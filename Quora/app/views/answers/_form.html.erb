@@ -1,0 +1,26 @@
+
+<%= form_for ([@question,@answer]) do |f| %>
+
+    <% if @answer.errors.any? %>
+			<div id="error_explanation">
+				<h2>
+					<%= pluralize(@answer.errors.count,"error") %>prohibited from being saved
+				</h2>
+				<ul>
+        		<% @answer.errors.full_messages.each do |msg| %>
+          		<li><%= msg %></li>
+          		<%end%>
+        <% end %>
+      </ul>
+    </div>
+  <table >
+  <tr>
+   <td><%= f.label :Answer %></td>
+   <td></td>
+   <td><%= f.text_field :data, id:"data", placeholder: "Add your answer"%></td>
+
+   <td><%= f.submit "Add" %></td>
+
+  </tr> 
+ </table>
+  <%end%>

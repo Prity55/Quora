@@ -1,0 +1,7 @@
+<%= form_for  @follow do |f| %>
+<%= f.hidden_field :question_id, :value => params[:question_id]%>
+
+<%= f.submit "follow" %>
+
+
+<% end %>

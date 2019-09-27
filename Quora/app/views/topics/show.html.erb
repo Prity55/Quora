@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag "list" %>
+
+    <ul>
+    <h1>Quora</h1>
+    <li><%=link_to 'Home',questions_path %></li>
+    <li><%=link_to  'add question',new_question_path %></li>
+    <li><%=link_to  'add topic',new_topic_path %></li>
+    <li><%=link_to 'user',welcomes_index_path %>
+    <li><%= link_to 'join topic',topics_path %></li>
+    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+
+  </ul>
+
+<h1>Add successfully</h1>
+<strong>topic_name :</strong>
+<%= @topic.topic_name %>
+<%= link_to 'add more',new_topic_path %>
+<%= link_to 'view all',topics_path %>
+<%= link_to  'edit',edit_topic_path(@topic)%>

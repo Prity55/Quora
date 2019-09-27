@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag "list" %>
+
+    <ul>
+    <h1>Quora</h1>
+    <li><%=link_to 'Home',questions_path %></li>
+    <li><%=link_to  'add question',new_question_path %></li>
+    <li><%=link_to  'add topic',new_topic_path %></li>
+    <li><%=link_to 'user',welcomes_index_path %>
+    <li><%= link_to 'join topic',topics_path %></li>
+    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+
+  </ul>
+
+
+<h1>Add answer</h1>
+<table align = "center">
+
+	<tr>Added topic by.<%= @question.topic.topic_name %></tr><br><br>
+	<tr><%= @question.author_name %></tr><br>
+	<tr><h2><%= @question.data %></h2><tr><br>
+	<tr><%= @question.question_link %></tr><br>
+	<tr><%= @question.created_at %></tr><br>
+	<tr><%= @question.follows.count %><%= link_to 'follow',new_follow_path(:question_id => @question)  %></tr><br>
+	<tr><%= link_to 'edit',edit_question_url(@question) %></tr><br>
+	<tr><%= link_to 'Destroy', question_path(@question),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></tr>
+
+	<tr><%= render 'answers/form' %> </tr><br>
+	<tr><%= render 'answers/answer' %></tr>
+	
+
+</table>

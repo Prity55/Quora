@@ -1,0 +1,13 @@
+<table>
+<% @answers.each do |answer| %>
+
+<tr>
+	<td>Anser by <%= answer.author %></td>
+	<td></td>
+	<td>=><%= answer.data %></td>
+	<td><%= answer.created_at.in_time_zone("CET") %></td>
+	<td><%= answer.downvotes.count %><%= link_to 'downvote',new_downvote_path(:answer_id =>answer) %></td>
+	<td><%= answer.upvotes.count %><%= link_to 'upvote',new_upvote_path(:answer_id => answer)%></td>
+</tr>
+</table>
+<%end%>

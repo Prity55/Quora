@@ -1,0 +1,49 @@
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "list" %>
+
+    <ul>
+    <h1>Quora</h1>
+    <li><%=link_to 'Home',questions_path %></li>
+    <li><%=link_to  'add question',new_question_path %></li>
+    <li><%=link_to  'add topic',new_topic_path %></li>
+    <li><%=link_to 'user',welcomes_index_path %>
+    <li><%= link_to 'join topic',topics_path %></li>
+    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+
+  </ul>
+
+<div class="login-box">
+<%= form_for @topic,:html => {:id => "reg"} do |form| %>
+<h1><center><b>Add new Topic</b></center></h1>
+<% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@topic.errors.count, "error") %> prohibited
+        this topic from being saved:
+      </h2>
+      <ul>
+        <% @topic.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table align="center">
+  <tr>
+    <td><%= form.label :Topic_Name %></td>
+    <td><%= form.text_field :topic_name, id:"name" %></td>
+    <td id="error"></td>
+  </tr>
+  <tr>
+        <td colspan="3"><%= form.submit %></td>
+  </tr>
+  <tr>
+    
+    <td><%= link_to 'view all',topics_path %></td>
+    
+  </tr>
+</table>
+</div>
+
+<% end %>

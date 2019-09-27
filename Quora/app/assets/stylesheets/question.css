@@ -1,0 +1,12 @@
+
+.box
+{
+	width:520px;
+	height:420px;
+	background:white;
+	color:#fff;
+	position:absolute;
+	border: 5px silver;
+	padding: 10px;
+	align-items: center;
+}

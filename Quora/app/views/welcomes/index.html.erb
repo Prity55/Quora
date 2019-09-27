@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag "list" %>
+
+    <ul>
+    <h1>Quora</h1>
+    <li><%=link_to 'Home',questions_path %></li>
+    <li><%=link_to  'add question',new_question_path %></li>
+    <li><%=link_to  'add topic',new_topic_path %></li>
+    <li><%=link_to 'user',welcomes_index_path %>
+    <li><%= link_to 'join topic',topics_path %></li>
+    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+
+ 	 </ul>
+ 	
+	<br>
+	<br>
+     <p align="right">
+        <h1><%=link_to_if(current_user.employment.blank?,'Employment detail',new_employment_path) %></h1>
+        <% if !current_user.employment.blank? %>
+            <%= render 'employments/detail' %>
+        <%end%>
+    </p>
+    <br>
+    
+	<p align="right">
+        <h1 align="right"><%= link_to_if(current_user.education.blank?,'Education detail',
+        new_education_path) %></h1>
+          <% if !current_user.education.blank? %>
+               <%= render 'educations/detail' %>
+          <%end%>
+    </p>
+        <br>
+        <br>
+        <br>
+   <h1 align="left"><%= link_to 'view question',view_questions_path %></h1>

@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag "list" %>
+<%= stylesheet_link_tag "question" %>
+    <ul>
+    <h1>Quora</h1>
+    <li><%=link_to 'Home',questions_path %></li>
+    <li><%=link_to  'add question',new_question_path %></li>
+    <li><%=link_to  'add topic',new_topic_path %></li>
+    <li><%=link_to 'user', welcomes_index_path %>
+    <li><%= link_to 'join topic',topics_path %></li>
+    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+
+  </ul>
+
+
+<table align = "center">
+<br>
+<br>
+
+<h1 align="left">All question detail</h1>
+<tr>
+
+<% @questions.each do |question| %>
+
+<p align="center">added by <%=question.topic.topic_name %></p>
+<p align="center">Question by&nbps<%= question.author_name %></p>
+<h2 align="center"><a href="<%= question_path(question)%>"><%= question.data %></a>
+</h2>
+<p align="center"><b>link:</b><%= question.question_link %></p>
+<p align="center"><b>time:</b><%= question.created_at.in_time_zone("CET") %></p>
+
+<p align="center"><%= question.follows.count %><%= link_to 'follow',new_follow_path(:question_id => question)  %></p>
+<p align="center"><%= link_to 'Answer', question_path(question) %><%=question.answers.count %></p>
+</tr>
+
+</table>
+
+<% end %>

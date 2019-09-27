@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  upvote_count: 1
+  downvote_count: 1
+  view: 1
+  last_followed: 2019-09-06 17:52:35
+  question: one
+
+two:
+  upvote_count: 1
+  downvote_count: 1
+  view: 1
+  last_followed: 2019-09-06 17:52:35
+  question: two

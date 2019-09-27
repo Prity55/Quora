@@ -1,0 +1,22 @@
+ 
+<table align="right">
+	
+	<tr>
+		<td><%= current_user.employment.position %></td>
+	</tr>
+	<tr>
+		<td><%= current_user.employment.company %></td>
+	</tr>
+	<tr>
+		<td><%= current_user.employment.start_year %></td>
+	</tr>
+	<tr>
+		<td><%= current_user.employment.end_year %></td>
+	</tr>
+	<tr>
+	<td><%= link_to 'edit',edit_employment_path(current_user.employment.id) %></td>
+	<td><%= link_to 'Delete', employment_path(current_user.employment.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+	</tr>
+</table>

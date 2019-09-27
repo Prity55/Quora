@@ -1,0 +1,66 @@
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "list" %>
+
+    <ul>
+    <h1>Quora</h1>
+    <li><%=link_to 'Home',questions_path %></li>
+    <li><%=link_to  'add question',new_question_path %></li>
+    <li><%=link_to  'add topic',new_topic_path %></li>
+    <li><%=link_to 'user',welcomes_index_path %>
+    <li><%= link_to 'join topic',topics_path %></li>
+    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+
+  </ul>
+
+<div class="login-box">
+<%= form_for @question,:html => {:id => "reg"} do |form| %>
+	<center><h1><b>Add Question detail<b></h1></center>
+		<% if @question.errors.any? %>
+			<div id="error_explanation">
+				<h2>
+					<%= pluralize(@question.errors.count,"error") %>prohibited from being saved
+				</h2>
+				<ul>
+        		<% @question.errors.full_messages.each do |msg| %>
+          		<li><%= msg %></li>
+            <% end %>
+      </ul>
+    </div>
+      <% end %>
+			
+	<table align="center">
+
+		<tr>
+			<td><%=current_user.name %> asked </td>
+			<td><%= form.select :author_name,options_for_select([['public', 'public'], ['anonymous', '2']], 'public') %>
+			</td>
+		</tr>
+		<tr>
+			<td><%= form.label :"related topic" %></td>
+			<td colspan="2">			
+			<%= form.select :topic_id,options_from_collection_for_select(Topic.all, :id, :topic_name) %>
+			</td>
+		</tr>
+		<tr>
+			
+			<td colspan="3"><%= form.text_field :data, id:"data", placeholder: "start your question with 'What','How','Why',etc."%></td>
+
+		</tr>
+		<tr>
+			
+			<td colspan="3"><%= form.text_field :question_link, id:"question_link",placeholder: "Optional:include a link that gives context" %></td>
+		</tr>
+		
+		<%= form.hidden_field :user_id, :value => current_user.id %>
+		
+		<tr>
+			<td colspan="3"><%= form.submit "save"%></td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= link_to 'back', questions_path %></td>
+			
+		</tr>
+	</table>
+</div>
+</div>
+<% end %>

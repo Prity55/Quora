@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  upvote: 2019-09-06 18:08:30
+  answer: one
+
+two:
+  upvote: 2019-09-06 18:08:30
+  answer: two
