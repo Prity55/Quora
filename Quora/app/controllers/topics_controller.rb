@@ -31,9 +31,11 @@ before_action :authenticate_user!
 		@topic = Topic.find(params[:id])
 	end
 	def destroy
+		
 		@topic = Topic.find(params[:id])
 		if @topic.questions.blank?
 		  @topic.destroy
+			redirect_to topics_path, notice:"topic deleted successfully"
 		else
 			redirect_to topics_path, notice:"topic have multiple question so it can't be delete"
 		end

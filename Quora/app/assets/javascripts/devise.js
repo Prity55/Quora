@@ -4,10 +4,10 @@ $(document).ready(function(){
  		if($('#name').val()=="")
  			$("#error").html("plz fill correct value");
  		else{			
- 			  var regex=/^[a-zA-Z]*$/gi;                                                              
+ 			  var regex=/^[a-zA-Z ]*$/gi;                                                              
  			  var f=regex.test($('#name').val());
- 			  if(f==true)
- 	  			$('#error').html("");
+	 			  if(f==true)
+ 		  			$('#error').html("");
  	  		  else{
  	  				$('#name').val("");
  			    	$("#error").html("error in name");
@@ -32,7 +32,7 @@ $(document).ready(function(){
 		  }
 		  else
 		  {
-
+		  	email();
 		  	$('#E_error').html("");
 
 			  return false;
@@ -45,7 +45,7 @@ $(document).ready(function(){
 			 $('#P_error').html("plz fill the value");
 			 return false;
 		}
-		else if($('#password').val()<8)
+		else if($('#password').val()<6)
 		{
 		 	 $('#P_error').html("plz give long password atlest having 8 character");
 			 return false;
@@ -73,11 +73,39 @@ $(document).ready(function(){
 			 return(true);
 			}
 	}
+	function email()
+	{
+		debugger
+			 		var i= $('#userid').val()
+ 	 			  var arr=i.split(" ");
+ 	 			   
+ 	 			   debugger
+ 	 			   
+ 	 			  for(var j=0;j<arr.length-1;j++)
+ 	 			  {
+ 	 			  	debugger
+	 	 			  	if($('#email').val()==arr[j])
+	 	 			  	{
+	 	 			  		debugger
+	 	 			  		$('#E_error').html("duplicate email id not allow");
+	 	 			  		alert("duplicate email id not allow");
+	 	 			  		return false;
+			   
+	 	 			  	}
+	 	 			  	else
+	 	 			  		{
+	 	 			  			debugger
+	 	 			  		  j++;
+	 	 			  	}
+	 	 			  	return true;
+ 	 			  }
+	}
 $('#name').blur(function(){
 	check_name();
 });
 $('#email').blur(function(){
-	check_email();
+	a=check_email();
+	debugger
 });
 
 $('#password').blur(function(){
@@ -87,22 +115,36 @@ $('#password').blur(function(){
 $('#password_confirmation').blur(function(){
 		re_check_pwd();				
 });
-$('#reg').on("submit",function(e){
-			
-		  if($('#name').val()=='')
+$(document).on('submit','#reg',function(e){
+debugger
+		  if($('#name').val()==''||$('#name').val()!='')
 			check_name();
-		  if($('#email').val()=='')
+		  if($('#email').val()==''){
 		  	check_email();
-		  if($('#password').val()=='')
+
+		  }
+		  if($('#password').val()==''||$('#password').val()!='')
 			check_pwd();
-		  if($('#password_confirmation').val()=='')
+		  if($('#password_confirmation').val()==''|| $('#password_confirmation').val()!='')
 			re_check_pwd();
-		  if($('#name').val()!='' && $('#email').val()!='' && $('#password').val()!='' && $('#password_confirmation').val()!='')
-		  
+			if($('#email').val()!='')
+			{
+				debugger
+			 	var a=email();
+			 	if(a==false)
+				 		alert("duplicate value not allow");
+			}
+		  if($('#name').val()!='' && $('#email').val()!='' && $('#password').val()!='' && $('#password_confirmation').val()!=''&& a==true)
+		  	{
+		  		debugger
+		  		
+		  		$('#reg').submit();
+		  		debugger
 				 return true;
-		  
+		  	}
 		  else{
 				 e.preventDefault();
+              
                  return false; 
 		   }
     });

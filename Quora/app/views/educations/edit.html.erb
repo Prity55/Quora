@@ -1,7 +1,8 @@
-<%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "list" %>
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "education.js" %>
 
-    <ul>
+ <ul>
     <h1>Quora</h1>
     <li><%=link_to 'Home',questions_path %></li>
     <li><%=link_to  'add question',new_question_path %></li>
@@ -11,20 +12,20 @@
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 
   </ul>
-
+<%= stylesheet_link_tag "style" %>
 <div class="login-box">
 <%= form_for @education,:html => {:id => "reg"} do |form| %>
 	<center><h1><b>Edit education detail<b></h1></center>
 		<% if @education.errors.any? %>
 			<div id="error_explanation">
-				<h2>
+				<h2 align= "left">
 					<%= pluralize(@education.errors.count,"error") %>prohibited from being saved
 				</h2>
-				<ul>
+				<p align="left">
         		<% @education.errors.full_messages.each do |msg| %>
           		<li><%= msg %></li>
         <% end %>
-      </ul>
+      </p>
     </div>
   <% end %>
 			
@@ -33,21 +34,25 @@
 			<td><%= form.label :School %></td>
 			<td></td>
 			<td><%= form.text_field :school, id: "school",placeholder: "DAVV" %></td>
+			<td id="error"></td>
 		</tr>
 		<tr>
 			<td><%= form.label :Concentration %></td>
 			<td></td>
-			<td><%= form.text_field :concentration, id:"Concentration", placeholder: "Economics"%></td>
+			<td><%= form.text_field :concentration, id:"concentration", placeholder: "Economics"%></td>
+      <td id="error1"></td>
 		</tr>
 		<tr>
 			<td><%= form.label :second_Concentration %></td>
 			<td></td>
-			<td><%= form.text_field :second_concentration, id:"Concentration",placeholder: "Global policy" %></td>
+			<td><%= form.text_field :second_concentration, id:"2concentration",placeholder: "Global policy" %></td>
+      <td id="error2"></td>
 		</tr>
 		<tr>
 			<td><%= form.label :Degree_Type %></td>
 			<td></td>
 			<td><%= form.text_field :degree, id:"degree",placeholder: "B.A." %></td>
+      <td id="error3"></td>
 		</tr>
 		<tr>
 		    <td><%= form.label :Graduation_year %></td>
@@ -61,8 +66,6 @@
 		</tr>
 		<tr>
 			<td><%= link_to 'back', welcomes_index_path %></td>
-			
-			
 		</tr>
 	</table>
 </div>

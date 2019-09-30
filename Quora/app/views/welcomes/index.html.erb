@@ -8,8 +8,7 @@
     <li><%=link_to 'user',welcomes_index_path %>
     <li><%= link_to 'join topic',topics_path %></li>
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-
- 	 </ul>
+    </ul>
  	
 	<br>
 	<br>
@@ -20,10 +19,10 @@
         <%end%>
     </p>
     <br>
-    
+    <h1 align="left"><%= link_to 'view question',view_questions_path %></h1>
 	<p align="right">
-        <h1 align="right"><%= link_to_if(current_user.education.blank?,'Education detail',
-        new_education_path) %></h1>
+        <h3 align="right"><%= link_to_if(current_user.education.blank?,'Education detail',
+        new_education_path) %></h3>
           <% if !current_user.education.blank? %>
                <%= render 'educations/detail' %>
           <%end%>
@@ -31,4 +30,4 @@
         <br>
         <br>
         <br>
-   <h1 align="left"><%= link_to 'view question',view_questions_path %></h1>
+   

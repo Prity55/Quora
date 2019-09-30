@@ -1,4 +1,6 @@
-<%= javascript_include_tag 'edu' %>
+
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag 'education.js' %>
 <%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "list" %>
 
@@ -21,17 +23,17 @@
 				<h2>
 					<%= pluralize(@education.errors.count,"error") %>prohibited from being saved
 				</h2>
-				<ul>
+				<p>
         		<% @education.errors.full_messages.each do |msg| %>
           		<li><%= msg %></li>
         <% end %>
-      </ul>
+      </p>
     </div>
   <% end %>
 			
 	<table align="center">
 		<tr>
-			<td><%= form.label :School %></td>
+			<td>*<%= form.label :School %></td>
 			<td></td>
 			<td><%= form.text_field :school, id: "school",placeholder: "DAVV" %></td>
 			<td id="error"></td>
@@ -40,17 +42,19 @@
 			<td><%= form.label :Concentration %></td>
 			<td></td>
 			<td><%= form.text_field :concentration, id:"Concentration", placeholder: "Economics"%></td>
-	
+	    <td id="error1"></td>
 		</tr>
 		<tr>
 			<td><%= form.label :second_Concentration %></td>
 			<td></td>
-			<td><%= form.text_field :second_concentration, id:"Concentration",placeholder: "Global policy" %></td>
+			<td><%= form.text_field :second_concentration, id:"2concentration",placeholder: "Global policy" %></td>
+      <td id="error2"></td>
 		</tr>
 		<tr>
 			<td><%= form.label :Degree_Type %></td>
 			<td></td>
 			<td><%= form.text_field :degree, id:"degree",placeholder: "B.A." %></td>
+      <td id="error3"></td>
 		</tr>
 		<tr>
 		    <td><%= form.label :Graduation_year %></td>

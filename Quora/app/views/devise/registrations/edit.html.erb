@@ -1,3 +1,5 @@
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "devise.js"%>
 <%= stylesheet_link_tag "style" %>
 <div class="login-box">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
@@ -13,7 +15,7 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autocomplete: "email" %>
   </div>
-
+   
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

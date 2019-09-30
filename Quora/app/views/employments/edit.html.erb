@@ -1,6 +1,7 @@
-<%= stylesheet_link_tag "style" %>
-<%= stylesheet_link_tag "list" %>
 
+<%= stylesheet_link_tag "list" %>
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "employments" %>
     <ul>
     <h1>Quora</h1>
     <li><%=link_to 'Home',questions_path %></li>
@@ -11,7 +12,7 @@
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 
   </ul>
-
+<%= stylesheet_link_tag "style" %>
 <div class="login-box">
 <%= form_for @employment,:html => {:id => "reg"} do |form| %>
 	<h1><b>Edit employment detail<b></h1>
@@ -20,11 +21,11 @@
 				<h2>
 					<%= pluralize(@employment.errors.count,"error") %>prohibited from being saved
 				</h2>
-				<ul>
+				<p>
         		<% @employment.errors.full_messages.each do |msg| %>
           		<li><%= msg %></li>
         <% end %>
-      </ul>
+      </p>
     </div>
   <% end %>
 			
@@ -33,11 +34,13 @@
 			<td><%= form.label :Position %></td>
 			<td></td>
 			<td><%= form.text_field :position, id:"position" %></td>
+      <td id="error"></td>
 		</tr>
 		<tr>
 			<td><%= form.label :company %></td>
 			<td></td>
 			<td><%= form.text_field :company, id:"company" %></td>
+      <td id="error"></td>
 		</tr>
 		<tr>
 			<td><%= form.label :start_year %></td>

@@ -16,10 +16,5 @@ class User < ApplicationRecord
 	has_many :upvotes
 	has_many :downvotes
 	has_many :follows
-	validates :email,format: {with: URI::MailTo::EMAIL_REGEXP}, uniqueness: true
-	validates :name, presence:true,format:{ with: /\A[a-zA-Z]+\z/,message:"only allows letter"}
-	validates :password, :presence => true,
-                   :confirmation => true,
-                   :length => {:within => 6..40},
-                   :unless => :force_submit
+	
 end

@@ -11,9 +11,13 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-#Rails.application.config.assets.precompile += %w( application.js )
+Rails.application.config.assets.precompile += %w( application.js )
+Rails.application.config.assets.precompile += %w( jquery_init.js )
 Rails.application.config.assets.precompile += %w( devise.js )
 Rails.application.config.assets.precompile += %w( edu.js )
 Rails.application.config.assets.precompile += %w( style.css )
 Rails.application.config.assets.precompile += %w( list.css )
 Rails.application.config.assets.precompile += %w( question.css )
+Rails.application.config.assets.precompile += %w( education.js )
+Rails.application.config.assets.precompile += %w( employments.js)
+Rails.application.config.assets.precompile += %w( topics.js)

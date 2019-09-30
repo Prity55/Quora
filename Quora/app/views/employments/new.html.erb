@@ -1,9 +1,8 @@
-<%= stylesheet_link_tag "style" %>
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "employments" %>
 
-
-
-
-    <ul>
+<%= stylesheet_link_tag "list" %>
+   <ul>
     <h1>Quora</h1>
     <li><%=link_to 'Home',questions_path %></li>
     <li><%=link_to  'add question',new_question_path %></li>
@@ -11,58 +10,62 @@
     <li><%=link_to 'user',welcomes_index_path%>
     <li><%= link_to 'join topic',topics_path %></li>
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-
   </ul>
+  <br>
+  <br>
+  <br>
+
 <%= form_for @employment,:html => {:id => "reg"} do |form| %>
-	
-		<% if @employment.errors.any? %>
-			<div id="error_explanation">
-				<h2>
-					<%= pluralize(@employment.errors.count,"error") %>prohibited from being saved
-				</h2>
-				<ul>
-        		<% @employment.errors.full_messages.each do |msg| %>
-          		<li><%= msg %></li>
-        <% end %>
-      </ul>
+  <% if @employment.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+      <%= pluralize(@employment.errors.count,"error") %>prohibited from being saved 
+          </h2>
+            <p>
+              <% @employment.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </p>
     </div>
   <% end %>
-		
-	<table align="center">
-		<h1 align="center"><b>Add employment detail<b></h1>	
-		<tr>
-			<td><%= form.label :Position %></td>
-			<td></td>
-			<td><%= form.text_field :position, id:"position",placeholder: "software developer" %></td>
-		</tr>
-		<tr>
-			<td><%= form.label :company %></td>
-			<td></td>
-			<td><%= form.text_field :company, id:"company",placeholder: "Facebook" %></td>
-		</tr>
-		<tr>
-			<td><%= form.label :start_year %></td>
-			<td></td>
-			<td><%= form.select :start_year, (2000..Time.now.year).to_a, :include_blank => {:year => "Select year"} %></td>
-		</tr>
-		<tr>
-		    <td><%= form.label :End_year %></td>
-		    <td></td>
-		    <td><%= form.select :end_year, (2000..Time.now.year).to_a, :include_blank => {:year => "Select year"} %></td>
-		</tr>
-		<%= form.hidden_field :user_id, :value => current_user.id %>
-		<tr>
-			<td><%= form.check_box :current_stage %></td>
-			<td colspan=2 ></td>
-		</tr>
-		<tr>
-			<td colspan=3><%= form.submit "save"%></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= link_to 'back', welcomes_index_path %></td>
-			
-			
-		</tr>
-	</table>
+<%= stylesheet_link_tag "style" %>
+  <div class="login-box"> 
+  <table align="center">
+    <h1 align="center"><b>Add employment detail<b></h1> 
+    <tr>
+      <td><%= form.label :Position %></td>
+      <td></td>
+      <td><%= form.text_field :position, id:"position",placeholder: "software developer" %></td>
+      <td id="error"></td>
+    </tr>
+    <tr>
+      <td><%= form.label :company %></td>
+      <td></td>
+      <td><%= form.text_field :company, id:"company",placeholder: "Facebook" %></td>
+      <td id="1error"></td>
+    </tr>
+    <tr>
+      <td><%= form.label :start_year %></td>
+      <td></td>
+      <td><%= form.select :start_year, (2000..Time.now.year).to_a, :include_blank => {:year => "Select year"} %></td>
+    </tr>
+    <tr>
+        <td><%= form.label :End_year %></td>
+        <td></td>
+        <td><%= form.select :end_year, (2000..Time.now.year).to_a, :include_blank => {:year => "Select year"} %></td>
+    </tr>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <tr>
+      <td><%= form.check_box :current_stage %></td>
+      <td colspan=2 ></td>
+    </tr>
+    <tr>
+      <td colspan=3><%= form.submit "save"%></td>
+    </tr>
+    <tr>
+      <td colspan="3"><%= link_to 'back', welcomes_index_path %></td>
+        </tr>
+  </table>
 </div>
+   
 <% end %>
