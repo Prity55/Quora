@@ -75,18 +75,15 @@ $(document).ready(function(){
 	}
 	function email()
 	{
-		debugger
-			 		var i= $('#userid').val()
- 	 			  var arr=i.split(" ");
- 	 			   
- 	 			   debugger
- 	 			   
+		var i= $('#userid').val()
+ 	 	var arr=i.split(" ");
+ 	 				   			   
  	 			  for(var j=0;j<arr.length-1;j++)
  	 			  {
- 	 			  	debugger
+ 	 			  	
 	 	 			  	if($('#email').val()==arr[j])
 	 	 			  	{
-	 	 			  		debugger
+	 	 			  		
 	 	 			  		$('#E_error').html("duplicate email id not allow");
 	 	 			  		alert("duplicate email id not allow");
 	 	 			  		return false;
@@ -94,18 +91,18 @@ $(document).ready(function(){
 	 	 			  	}
 	 	 			  	else
 	 	 			  		{
-	 	 			  			debugger
-	 	 			  		  j++;
+	 	 			  			 j++;
 	 	 			  	}
-	 	 			  	return true;
+	 	 			  	
  	 			  }
+ 	 			  return true;
 	}
 $('#name').blur(function(){
 	check_name();
 });
 $('#email').blur(function(){
 	a=check_email();
-	debugger
+	
 });
 
 $('#password').blur(function(){
@@ -116,12 +113,11 @@ $('#password_confirmation').blur(function(){
 		re_check_pwd();				
 });
 $(document).on('submit','#reg',function(e){
-debugger
+
 		  if($('#name').val()==''||$('#name').val()!='')
 			check_name();
 		  if($('#email').val()==''){
 		  	check_email();
-
 		  }
 		  if($('#password').val()==''||$('#password').val()!='')
 			check_pwd();
@@ -129,18 +125,16 @@ debugger
 			re_check_pwd();
 			if($('#email').val()!='')
 			{
-				debugger
+				
 			 	var a=email();
 			 	if(a==false)
 				 		alert("duplicate value not allow");
 			}
 		  if($('#name').val()!='' && $('#email').val()!='' && $('#password').val()!='' && $('#password_confirmation').val()!=''&& a==true)
 		  	{
-		  		debugger
 		  		
 		  		$('#reg').submit();
-		  		debugger
-				 return true;
+		  	  return true;
 		  	}
 		  else{
 				 e.preventDefault();

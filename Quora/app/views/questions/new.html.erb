@@ -1,6 +1,6 @@
-<%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "list" %>
-
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "questions.js" %>
     <ul>
     <h1>Quora</h1>
     <li><%=link_to 'Home',questions_path %></li>
@@ -11,7 +11,7 @@
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 
   </ul>
-
+<%= stylesheet_link_tag "style" %>
 <div class="login-box">
 <%= form_for @question,:html => {:id => "reg"} do |form| %>
 	<center><h1><b>Add Question detail<b></h1></center>
@@ -44,6 +44,7 @@
 		<tr>
 			
 			<td colspan="3"><%= form.text_field :data, id:"data", placeholder: "start your question with 'What','How','Why',etc."%></td>
+      <td id="error"></td>
 
 		</tr>
 		<tr>

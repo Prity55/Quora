@@ -14,8 +14,7 @@ class QuestionsController < ApplicationController
     end
     
     if @question.save
-      debugger
-      redirect_to question_url(@question)
+       redirect_to question_url(@question)
     else
       render 'new'
     end
@@ -36,25 +35,25 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
   end
-  def follow
-    @question = Question.find(params[:id])
-    if @question.user.id!=current_user.id
-      debugger
-        follow1 = @question.follow+1 
-        if @question.update(follow: follow1)
-        redirect_to questions_path, notice:'followed'
-        else 
-          render 'follow'
-        end 
-    else
-      follow1 = @question.follow-1
-        if @question.update(follow: follow1)
-        redirect_to questions_path, notice:'followed'
-        else 
-          render 'follow'
-        end 
-    end
-  end
+  # def follow
+  #   @question = Question.find(params[:id])
+  #   if @question.user.id!=current_user.id
+     
+  #       follow1 = @question.follow+1 
+  #       if @question.update(follow: follow1)
+  #       redirect_to questions_path, notice:'followed'
+  #       else 
+  #         render 'follow'
+  #       end 
+  #   else
+  #     follow1 = @question.follow-1
+  #       if @question.update(follow: follow1)
+  #       redirect_to questions_path, notice:'followed'
+  #       else 
+  #         render 'follow'
+  #       end 
+  #   end
+  # end
   def show 
       
          #@topics=Topic.joins(:questions).where("questions.topic_id IN (?)", Topic.all.pluck(:id))
