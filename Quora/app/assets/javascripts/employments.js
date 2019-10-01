@@ -50,7 +50,7 @@ $(document).on('submit','#reg',function(e){
 				 return true;
 		  }
 		  else{
-        debugger
+        
 				     e.preventDefault();
                  return false; 
 		   }

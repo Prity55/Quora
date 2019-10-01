@@ -1,5 +1,6 @@
-
-<%= form_for ([@question,@answer]) do |f| %>
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "answers.js" %>
+<%= form_for ([@question,@answer]),:html => {:id => "reg"} do |f| %>
 
     <% if @answer.errors.any? %>
 			<div id="error_explanation">

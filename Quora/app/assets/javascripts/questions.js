@@ -4,11 +4,11 @@ $(document).ready(function(){
 
     function check_name(){
     if($('#data').val()=="")
-      {debugger
-      $("#error").html("plz fill correct value");
+      {
+            alert ("plz fill value in question text box");
     }
     else
-      {debugger
+      {
       $("#error").html("");
     }
   }
@@ -16,17 +16,16 @@ $(document).ready(function(){
     check_name();
   });
   $(document).on('submit','#reg',function(e){
-      debugger
       
       if($('#data').val()!='')
       {
-          debugger  
-        $('#reg').submit();
-
+          
+        //$('#reg').submit();
+//
           return true;
       }
       else{
-          debugger
+            check_name();
              e.preventDefault();
                  return false; 
            }

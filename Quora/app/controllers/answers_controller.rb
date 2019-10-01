@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
 	 	# @answer = Answer.new
    #  end
 	def create
-		 debugger
+
 		@question=Question.find(params[:question_id])
 		@answer = @question.answers.create(params_answer.merge(downvote_count: 0,author: current_user.name))
 		

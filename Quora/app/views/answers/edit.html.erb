@@ -1,5 +1,6 @@
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "answers.js" %>
 <%= stylesheet_link_tag "list" %>
-
     <ul>
     <h1>Quora</h1>
     <li><%=link_to 'Home',questions_path %></li>
@@ -12,7 +13,7 @@
   </ul>
 
 
-<%= form_for ([@question,@answer]) do |f| %>
+<%= form_for ([@question,@answer]),:html => {:id => "reg"} do |f| %>
 <% if @answer.errors.any? %>
 			<div id="error_explanation">
 				<h2>
