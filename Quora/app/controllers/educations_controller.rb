@@ -1,5 +1,5 @@
 class EducationsController < ApplicationController
-
+	before_action :authenticate_user!
 	def new
 		@education = Education.new
 	end

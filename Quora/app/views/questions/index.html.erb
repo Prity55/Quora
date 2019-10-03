@@ -22,7 +22,7 @@
 <% @questions.each do |question| %>
 
 <p align="center">added by <%=question.topic.topic_name %></p>
-<p align="center">Question by&nbps<%= question.author_name %></p>
+<p align="center">Question by <%= question.author_name %></p>
 <h2 align="center"><a href="<%= question_path(question)%>"><%= question.data %></a>
 </h2>
 <p align="center"><b>link:</b><%= question.question_link %></p>

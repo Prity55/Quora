@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   get 'welcomes/index'
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}, action: :edit
   resources :topics do
   	member do
   	  get :join
@@ -14,19 +14,16 @@ Rails.application.routes.draw do
     get :view, on: :collection
     resources :answers
   end
+  resources :images,only:[:new,:create,:destroy]
   get '/users',to:'devise/registrations#new'
   get '/employments',to:'employments#new'
   get '/educations',to:'educations#new'
   get '/employments/:id',to: 'employments#edit'
   
   resources :answers,except:[:new] do
-    
       member do
-        
-        
-        get :views
-
-      end
+      get :views
+    end
   end
    resources :upvotes,only:[:new,:create,:destroy]
    resources :downvotes,only:[:new,:create,:destroy]

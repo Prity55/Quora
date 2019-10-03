@@ -1,16 +1,15 @@
 <%= javascript_include_tag "jquery_init" %>
 <%= javascript_include_tag "answers.js" %>
 <%= form_for ([@question,@answer]),:html => {:id => "reg"} do |f| %>
-
-    <% if @answer.errors.any? %>
-			<div id="error_explanation">
-				<h2>
-					<%= pluralize(@answer.errors.count,"error") %>prohibited from being saved
-				</h2>
-				<ul>
-        		<% @answer.errors.full_messages.each do |msg| %>
-          		<li><%= msg %></li>
-          		<%end%>
+  <% if @answer.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@answer.errors.count,"error") %>prohibited from being saved
+			</h2>
+			<ul>
+        <% @answer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <%end%>
         <% end %>
       </ul>
     </div>

@@ -1,0 +1,5 @@
+<%= form_for @image,:html => {:id => "reg"} do |f| %>
+  <%= f.label "profile photo" %>
+  <%= f.file_field :avatar %>
+  <%= f.submit "save" %>
+<%end%>

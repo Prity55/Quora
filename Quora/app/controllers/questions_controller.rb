@@ -35,6 +35,8 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
   end
+  
+  
   # def follow
   #   @question = Question.find(params[:id])
   #   if @question.user.id!=current_user.id

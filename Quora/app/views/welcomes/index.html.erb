@@ -12,14 +12,16 @@
  	
 	<br>
 	<br>
+    <br>
      <p align="right">
-        <h1><%=link_to_if(current_user.employment.blank?,'Employment detail',new_employment_path) %></h1>
+        <h><%=link_to_if(current_user.employment.blank?,'Employment detail',new_employment_path) %></h1>
         <% if !current_user.employment.blank? %>
             <%= render 'employments/detail' %>
         <%end%>
     </p>
     <br>
-    <h1 align="left"><%= link_to 'view question',view_questions_path %></h1>
+    <h2 align="left"><%= link_to 'view question',view_questions_path %></h2>
+    <h2 align="left"><%= link_to 'edit info',edit_user_registration_path(current_user.id)  %></h2>
 	<p align="right">
         <h3 align="right"><%= link_to_if(current_user.education.blank?,'Education detail',
         new_education_path) %></h3>
@@ -30,4 +32,4 @@
         <br>
         <br>
         <br>
-   
+  

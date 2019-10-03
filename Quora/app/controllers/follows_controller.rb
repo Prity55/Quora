@@ -1,4 +1,5 @@
 class FollowsController < ApplicationController
+  before_action :authenticate_user!
 	def new
 		@follow= Follow.new
 	end

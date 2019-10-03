@@ -72,8 +72,7 @@
         var f=regex.test($('#school').val());
       if($('#school').val()==''|| $('#school').val()!='')
       {
-        debugger
-         check_name();
+        check_name();
       }
       if($('#concentration').val()!='')
          check_concentration();
@@ -84,17 +83,12 @@
 
  		  if($('#school').val()!='')
        {
-        debugger
-        
          $('#reg').submit();
-          debugger
          return true;
         }    
       else{
-        debugger
           e.preventDefault();
           return false; 
        }
-
    });
 });

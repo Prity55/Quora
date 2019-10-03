@@ -16,5 +16,5 @@ class User < ApplicationRecord
 	has_many :upvotes
 	has_many :downvotes
 	has_many :follows
-	
+  has_one :image
 end
