@@ -1,30 +1,29 @@
 class AnswersController < ApplicationController
 	
-   #  def new
-	 	# @answer = Answer.new
-   #  end
+    def new
+	 	 @answer = Answer.new
+    end
 	def create
 
-		@question=Question.find(params[:question_id])
+		@question=Question.find(params[:answer][:question_id])
 		@answer = @question.answers.create(params_answer.merge(downvote_count: 0,author: current_user.name))
-		
-		if @answer.save
-			
-			add_user(@answer)
-			redirect_to answer_path(@answer), notice:'answer added successfully'
-		else
-			redirect_to question_path(@question), notice:@answer.errors
-		end
+		respond_to do |format|
+			if @answer.save
+				add_user(@answer)
+				format.html do
+				  redirect_to answer_path(@answer), notice:'answer added successfully'
+				end
+			else
+				format.html do
+					redirect_to question_path(@question), notice:@answer.errors
+				end
+			end
+	  end
 	end
 	def show
-		
-		
 		@upvote=Upvote.new
-		
 		@answer=Answer.find(params[:id])
 		@downvote=Downvote.new
-		
-		
 		@upvotes= @answer.upvotes.count	
 	end
 	def edit 

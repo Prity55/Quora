@@ -1,0 +1,5 @@
+<%= javascript_include_tag "jquery_init.js" %>
+<%= form_for @upvote do |f| %>
+<%= f.hidden_field :answer_id, :value => params[:answer_id]%>
+<%= f.submit "upvote" %>
+<% end %>

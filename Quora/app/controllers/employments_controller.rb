@@ -5,11 +5,17 @@ class EmploymentsController < ApplicationController
 	end
 	def create
 		@employment = Employment.new(employment_params)
-		if @employment.save
-			redirect_to employment_path({:id => @employment.id}),notice: 'add successfully'
-		else
-			
-			render 'new'
+		respond_to do |format|
+			if @employment.save
+				#format.html { redirect_to @user, notice: 'User was successfully created.' }
+				#redirect_to employment_path({:id => @employment.id}),notice: 'add successfully'
+		 		#format.js 
+		 		format.html do
+          redirect_to '/welcomes/index'
+        end
+			else
+			format.html{render 'new'}
+			end
 		end
 	end
 	def show
@@ -21,10 +27,15 @@ class EmploymentsController < ApplicationController
 	def update
 		@employment = Employment.find(params[:id])
 		if !employment_params.blank?
-			if @employment.update(employment_params)
-				redirect_to @employment, notice:'information updated successfully'
-			else
-				render 'edit'
+			respond_to do |format|
+				if @employment.update(employment_params)
+					#redirect_to @employment, notice:'information updated successfully'
+					format.html do
+					  redirect_to '/welcomes/index'
+					 end
+				else
+					format.html{render 'edit'}
+				end
 			end
 		else
 			redirect_to new_employment_path(@employment), notice: "position and company can't be blank"	

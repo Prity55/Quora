@@ -18,7 +18,7 @@
    <td><%= f.label :Answer %></td>
    <td></td>
    <td><%= f.text_field :data, id:"data", placeholder: "Add your answer"%></td>
-
+      <%= f.hidden_field :question_id, :value => params[:question_id]%>
    <td><%= f.submit "Add" %></td>
 
   </tr> 

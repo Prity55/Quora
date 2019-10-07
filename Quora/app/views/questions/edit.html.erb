@@ -1,16 +1,15 @@
 <%= stylesheet_link_tag "list" %>
 <%= javascript_include_tag "jquery_init" %>
 <%= javascript_include_tag "questions.js" %>
-    <ul>
-    <h1>Quora</h1>
-    <li><%=link_to 'Home',questions_path %></li>
-    <li><%=link_to  'add question',new_question_path %></li>
-    <li><%=link_to  'add topic',new_topic_path %></li>
-    <li><%=link_to 'user',welcomes_index_path %>
-    <li><%= link_to 'join topic',topics_path %></li>
-    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-
-  </ul>
+<ul>
+  <h1>Quora</h1>
+  <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
+  <li><%=link_to  'add question',new_question_path, class: "fa fa-plus"%></li>
+  <li><%=link_to  'add topic',new_topic_path,class: "fa fa-plus-circle" %></li>
+  <li><%=link_to 'user', welcomes_index_path,class: "fa fa-user-plus"%>
+  <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
+  <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
+</ul>
 <%= stylesheet_link_tag "style" %>
 <div class="login-box">
 <%= form_for @question,:html => {:id => "reg"} do |form| %>

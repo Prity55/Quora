@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/educations',to:'educations#new'
   get '/employments/:id',to: 'employments#edit'
   
-  resources :answers,except:[:new] do
+  resources :answers do
       member do
       get :views
     end

@@ -1,31 +1,20 @@
 <%= stylesheet_link_tag "list" %>
-
-    <ul>
-    <h1>Quora</h1>
-    <li><%=link_to 'Home',questions_path %></li>
-    <li><%=link_to  'add question',new_question_path %></li>
-    <li><%=link_to  'add topic',new_topic_path %></li>
-    <li><%=link_to 'user',welcomes_index_path %>
-    <li><%= link_to 'join topic',topics_path %></li>
-    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-
-  </ul>
-
+<ul>
+  <h1>Quora</h1>
+  <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
+  <li><%=link_to  'add question',new_question_path, class: "fa fa-plus"%></li>
+  <li><%=link_to  'add topic',new_topic_path,class: "fa fa-plus-circle" %></li>
+  <li><%=link_to 'user', welcomes_index_path,class: "fa fa-user-plus"%>
+  <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
+  <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
+</ul>
 <h1 align="center">answer review</h1>
 <table align = "center">
 
 <tr><h1><%= @answer.question.data %></h1></tr><br><br>
 <tr>answer by <%=current_user.name %><tr><br>
-<tr><%= @answer.data %></tr> &nbsp<%= link_to "edit",edit_answer_path(@answer)%>&nbsp<%= link_to 'Destroy', answer_path(@answer),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %><br>
-
-
+<tr><%= @answer.data %></tr> &nbsp<%= link_to "edit",edit_answer_path(@answer)%><br>
 <tr><%= @answer.created_at.in_time_zone("CET") %></tr><br>
-
-
 </table>
 	<p><%= link_to "back" ,question_path(@answer.question_id) %></p>
-	<p><%= @answer.upvotes.count %><%= link_to 'upvote',new_upvote_path(:answer_id => @answer)%></p>
-	<p><%= @answer.downvotes.count %><%= link_to 'downvote',new_downvote_path(:answer_id =>    @answer) %></p>
-
+	

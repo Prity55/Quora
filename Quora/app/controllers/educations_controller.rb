@@ -6,12 +6,14 @@ class EducationsController < ApplicationController
 	def create
 		
 		@education = Education.new(education_params)
-
-		if @education.save
-			redirect_to education_url({:id => @education.id}) ,notice: 'add successfully'
-	
-		else
-			render 'new'
+		respond_to do |format|
+			if @education.save
+				format.html do
+				  redirect_to '/welcomes/index' ,notice: 'add successfully'
+				end
+			else
+				format.html{render 'new'}
+			end	
 		end	
 	end
 	def show
@@ -21,15 +23,17 @@ class EducationsController < ApplicationController
 		@education = Education.find(params[:id]) 
 	end
 	def update
-		
 		@education = Education.find(params[:id])
-		
 		if !education_params.blank?
-			if @education.update(education_params)
-				 redirect_to @education, notice:'information updated successfully'
-			else
-			 render 'edit'
-		    end
+			respond_to do |format|
+				if @education.update(education_params)
+					format.html do
+					  redirect_to '/welcomes/index' , notice:'information updated successfully'
+					end
+				else
+				 format.html{render 'edit'}
+			  end
+			end
 		else
 			 redirect_to edit_education_path(@education), notice: "school value can't be blank"
 		end	  

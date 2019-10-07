@@ -60,7 +60,7 @@ class QuestionsController < ApplicationController
       
          #@topics=Topic.joins(:questions).where("questions.topic_id IN (?)", Topic.all.pluck(:id))
     @answer=Answer.new
-    #@upvote=Upvote.new
+    #@downvote=Downvote.new
     @question=Question.find(params[:id])
     @answers= @question.answers 
     

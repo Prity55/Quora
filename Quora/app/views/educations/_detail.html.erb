@@ -1,14 +1,9 @@
 <%= stylesheet_link_tag "list" %>
-
-   
 <table align="right">
-
 	<tr>
-		
 		<td><%= current_user.education.school %></td>
 	</tr>
 	<tr>
-		
 		<td><%= current_user.education.concentration %></td>
 	</tr>
 	<tr>
@@ -21,8 +16,11 @@
 		<td><%= current_user.education.graduation_year %></td>
 	</tr>
 	<tr>
-		
-		<td><%= link_to 'edit',edit_education_path(current_user.education.id) %></td>
+		<td>
+			<div id="edit-education">
+				<%= link_to 'edit',edit_education_path(current_user.education.id),remote: true %>
+			</div>
+			</td>
 		<td><%= link_to 'Delete', education_path(current_user.education.id),
 	              method: :delete,
 	              data: { confirm: 'Are you sure?' } %></td>

@@ -1,0 +1,23 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </link>
+</head>
+<body>
+<style>
+    .fa {
+      font-size: 25px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .fa:hover {
+      color: darkblue;
+    }
+</style>
+<%= javascript_include_tag "jquery_init.js" %>
+  <%= form_for  @downvote do |f| %>
+  <%= f.hidden_field :answer_id, :value => params[:answer_id]%>
+  <%= f.button "downvote" ,class: "fa fa-arrow-down"%> Like
+<% end %>
+</html>

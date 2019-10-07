@@ -1,34 +1,44 @@
 <%= stylesheet_link_tag "list" %>
-
-    <ul>
+<%= javascript_include_tag "jquery_init.js" %>
+<ul>
     <h1>Quora</h1>
-    <li><%=link_to 'Home',questions_path %></li>
-    <li><%=link_to  'add question',new_question_path %></li>
-    <li><%=link_to  'add topic',new_topic_path %></li>
-    <li><%=link_to 'user',welcomes_index_path %>
-    <li><%= link_to 'join topic',topics_path %></li>
-    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-    </ul>
- 	
-	<br>
+    <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
+    <li><%=link_to  'add question',new_question_path, class: "fa fa-plus"%></li>
+    <li><%=link_to  'add topic',new_topic_path,class: "fa fa-plus-circle" %></li>
+    <li><%=link_to 'user', welcomes_index_path,class: "fa fa-user-plus"%>
+    <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
+    <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
+</ul>
+ 	<br>
 	<br>
     <br>
-     <p align="right">
-        <h><%=link_to_if(current_user.employment.blank?,'Employment detail',new_employment_path) %></h1>
-        <% if !current_user.employment.blank? %>
-            <%= render 'employments/detail' %>
-        <%end%>
-    </p>
-    <br>
-    <h2 align="left"><%= link_to 'view question',view_questions_path %></h2>
-    <h2 align="left"><%= link_to 'edit info',edit_user_registration_path(current_user.id)  %></h2>
-	<p align="right">
-        <h3 align="right"><%= link_to_if(current_user.education.blank?,'Education detail',
-        new_education_path) %></h3>
-          <% if !current_user.education.blank? %>
-               <%= render 'educations/detail' %>
-          <%end%>
-    </p>
+   
+         <p align="right">
+             
+                <h3 align="right">
+                    <div id="new-employ"><%=link_to_if(current_user.employment.blank?,'Employment detail',new_employment_path, remote: true) %>
+                    </div>
+                </h3>
+           
+                <% if !current_user.employment.blank? %>
+                    <%= render 'employments/detail' %>
+                <%end%>
+        </p>
+        <br>
+        <h2 align="left"><%= link_to 'view question',view_questions_path %></h2>
+        <h2 align="left"><%= link_to 'edit info',edit_user_registration_path(current_user.id)  %></h2>
+    	<p align="right">
+           
+              <h3 align="right">
+                <div id="new-education">
+                 <%= link_to_if(current_user.education.blank?,'Education detail',new_education_path, remote: true) %>
+                </div>
+              </h3>
+             <% if !current_user.education.blank? %>
+                   <%= render 'educations/detail' %>
+              <%end%>
+        </p>
+
         <br>
         <br>
         <br>

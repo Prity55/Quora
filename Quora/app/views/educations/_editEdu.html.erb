@@ -1,0 +1,55 @@
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "education.js" %>
+<div class="login-box">
+<%= form_for @education,:html => {:id => "reg"} do |form| %>
+  <center><h1><b>Edit education detail<b></h1></center>
+    <% if @education.errors.any? %>
+      <div id="error_explanation">
+        <h2 align= "left">
+          <%= pluralize(@education.errors.count,"error") %>prohibited from being saved
+        </h2>
+        <p align="left">
+            <% @education.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+  <table align="center">
+    <tr>
+      <td><%= form.label :School %></td>
+      <td></td>
+      <td><%= form.text_field :school, id: "school",placeholder: "DAVV" %></td>
+      <td id="error"></td>
+    </tr>
+    <tr>
+      <td><%= form.label :Concentration %></td>
+      <td></td>
+      <td><%= form.text_field :concentration, id:"concentration", placeholder: "Economics"%></td>
+      <td id="error1"></td>
+    </tr>
+    <tr>
+      <td><%= form.label :second_Concentration %></td>
+      <td></td>
+      <td><%= form.text_field :second_concentration, id:"2concentration",placeholder: "Global policy" %></td>
+      <td id="error2"></td>
+    </tr>
+    <tr>
+      <td><%= form.label :Degree_Type %></td>
+      <td></td>
+      <td><%= form.text_field :degree, id:"degree",placeholder: "B.A." %></td>
+      <td id="error3"></td>
+    </tr>
+    <tr>
+        <td><%= form.label :Graduation_year %></td>
+        <td></td>
+        <td><%= form.select :graduation_year, (2000..Time.now.year).to_a, :include_blank => {:year => "Select year"} %></td>
+    </tr>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    
+    <tr>
+      <td colspan=3><%= form.submit "save"%></td>
+    </tr>
+  </table>
+</div>
+<% end %>

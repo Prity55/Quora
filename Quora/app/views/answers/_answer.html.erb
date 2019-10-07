@@ -1,12 +1,58 @@
-<table>
-<% @answers.each do |answer| %>
-<tr>
-	<td>Anser by <%= answer.author %></td>
-	<td></td>
-	<td>=><%= answer.data %></td>
-	<td><%= answer.created_at.in_time_zone("CET") %></td>
-	<td><%= answer.downvotes.count %><%= link_to 'downvote',new_downvote_path(:answer_id =>answer) %></td>
-	<td><%= answer.upvotes.count %><%= link_to 'upvote',new_upvote_path(:answer_id => answer)%></td>
-</tr>
-</table>
-<%end%>
+    <html>
+    <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <style>
+    .fa {
+      font-size: 25px;
+      cursor: pointer;
+      color: black;
+      user-select: none;
+    }
+
+    .fa:hover {
+      color: darkblue;
+    }
+  </style>
+      <body>
+        <script>
+        function myFunction(x) {
+          x.classList.toggle("fa-arrow-down");
+        }
+        </script>
+      </body>
+    <% @answers.each do |answer| %>
+    <table>
+    <tr>
+    	<td>Answer by <%= answer.author %></td>
+    </tr>
+    <tr>
+    	<td><%= answer.data %></td>
+    </tr>
+    <tr>
+    	<td><%= answer.created_at.in_time_zone("CET") %></td>
+    <tr>
+    <tr>
+    	<td>
+        <div id="downvote">
+          <%= link_to '',new_downvote_path(:answer_id =>answer),remote: true ,class: "fa fa-arrow-down",onclick:"myFunction(this)" %><%= answer.downvotes.count %>
+        </div>
+      </td>
+    	<td>
+        <div id="upvote">
+          <%= link_to '',new_upvote_path(:answer_id => answer), remote: true,class: "fa fa-arrow-up" %><%= answer.upvotes.count %>
+        </div>
+      </td>
+      <td>
+        <%=link_to_if(current_user.answers.where(:id=>answer).present?,'edit',edit_answer_path(answer))%>
+      </td>
+      &nbsp;
+      <td></td>
+      <td>
+      <%= link_to_if(current_user.answers.where(:id=>answer).present?,'Destroy', answer_path(answer),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }) %>
+      </td>
+    </tr>
+    </table> 
+    <%end%>
