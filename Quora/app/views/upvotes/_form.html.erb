@@ -1,5 +1,5 @@
 <%= javascript_include_tag "jquery_init.js" %>
 <%= form_for @upvote do |f| %>
 <%= f.hidden_field :answer_id, :value => params[:answer_id]%>
-<%= f.submit "upvote" %>
+<%= f.button "upvote" ,class: "fa fa-arrow-down"%><i class: "fa fa-arrow-down"></i>
 <% end %>

@@ -8,33 +8,30 @@ before_action :authenticate_user!
 	end
 	def create
 		@topic = Topic.new(topic_params)
-    	if @topic.save
-		  redirect_to @topic, notice: 'topic was successfully created.'
-		 else
-		 	render 'new'
+    if @topic.save
+			redirect_to @topic, notice: 'topic was successfully created.'
+		else
+		  render 'new'
 		end
 	end
-	
 	def update
 		@topic = Topic.find(params[:id])
 		if @topic.update(topic_params)
-		    redirect_to @topic
-	    else
-	    	render 'edit'
-	    end
+	    redirect_to @topic
+    else
+    	render 'edit'
+    end
 	end
 	def show
 		@topic = Topic.find(params[:id])
 	end
-	
 	def edit
 		@topic = Topic.find(params[:id])
 	end
 	def destroy
-		
 		@topic = Topic.find(params[:id])
 		if @topic.questions.blank?
-		  @topic.destroy
+		   @topic.destroy
 			redirect_to topics_path, notice:"topic deleted successfully"
 		else
 			redirect_to topics_path, notice:"topic have multiple question so it can't be delete"
@@ -42,20 +39,26 @@ before_action :authenticate_user!
 	end
 	def all
 		@user=User.find(current_user.id)
-
 		@topics=@user.topics.distinct
-
 	end
 	def join
 		@topic = Topic.find(params[:id])
-		
-		@hi=@topic.users << current_user
+		@add=@topic.users << current_user
 		@topics=Topic.all
-		redirect_to action: 'all'
+		redirect_to topics_path
+	end
+	def unjoin
+		@topic = Topic.find(params[:id])
+		if @topic.users.where(:id => current_user).present?
+			if @topic.users.delete(current_user)
+				redirect_to topics_path,notice:"unjoin topic"
+			else
+				redirect_to topics_path,notice:"some problem occur"
+			end
+		end
 	end
 	private
       def topic_params
 		  params.require(:topic).permit(:topic_name)
 	  end 
-
 end

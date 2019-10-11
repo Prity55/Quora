@@ -8,9 +8,15 @@ class UpvotesController < ApplicationController
 		
 		@answer=Answer.find(params[:upvote][:answer_id])
 		respond_to do |format|
-			if !@answer.upvotes.where(:user_id =>current_user.id).present?
+			if !@answer.upvotes.where(:user_id =>current_user.id).present? 
 				@upvote=@answer.upvotes.new(params_upvote.merge(user_id: current_user.id))
-				#debugger
+				if @answer.downvotes.where(:user_id =>current_user.id).present?
+					@downvote=Downvote.where(:user_id =>current_user.id)
+			  	@downvote.first.destroy
+			   	format.html do
+			     	redirect_to question_path(@answer.question), notice:'remove downvote successfully'
+			 		end
+				end
 				if @upvote.save
 					format.html do
 					  redirect_to question_path(@answer.question), notice:'upvoted successfully'

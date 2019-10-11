@@ -1,0 +1,13 @@
+.fa {
+  font-size: 25px;
+  cursor: pointer;
+  color: black;
+  user-select: none;
+  text-decoration: none;
+}
+.active{
+ color: darkblue;
+}
+.fa:hover {
+  color: darkblue;
+}

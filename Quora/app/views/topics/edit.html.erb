@@ -9,11 +9,17 @@
   <li><%=link_to 'user', welcomes_index_path,class: "fa fa-user-plus"%>
   <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
   <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
+  <li><% if current_user.avatar.attached? %>
+        <image src="<%= (url_for(current_user.avatar))%>" class= "img" alt="<%=current_user.name%>" >
+        <%else%>
+        <p><%=current_user.name%></p>
+        <% end %>
+    </li>
 </ul>
 <%= stylesheet_link_tag "style" %>
 <div class="login-box">
 <%= form_for @topic,:html => {:id => "reg"} do |form| %>
-<h1><center><b>Add new Topic</b></center></h1>
+<h1><center><b>Edit Topic</b></center></h1>
 <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -40,7 +46,7 @@
   <tr>
     
     <td><%= link_to 'view all',topics_path %></td>
-    
+    <td><%= link_to 'back',:back %></td>
   </tr>
 </table>
 </div>

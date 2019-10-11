@@ -1,45 +1,57 @@
 <%= stylesheet_link_tag "list" %>
 <%= stylesheet_link_tag "question" %>
 <%= javascript_include_tag "jquery_init" %>
+<%= stylesheet_link_tag "design" %>
+<%= stylesheet_link_tag "view" %>
 <html>
-    <head>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
-     <ul>
-        <h1>Quora</h1>
+  <body>
+    <% if user_signed_in?  %> 
+      <ul>
+        <h1>Quora</h1> 
         <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
         <li><%=link_to  'add question',new_question_path, class: "fa fa-plus"%></li>
         <li><%=link_to  'add topic',new_topic_path,class: "fa fa-plus-circle" %></li>
         <li><%=link_to 'user', welcomes_index_path,class: "fa fa-user-plus"%>
         <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
         <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
-     </ul>
+        <li>
+          <% if current_user.avatar.attached? %>
+            <image src="<%= (url_for(current_user.avatar))%>" class= "img" alt="<%=current_user.name%>" >
+          <%else%>
+            <p><%=current_user.name%></p>
+          <% end %>
+        </li>
+      </ul>
+    <%else%>
+      <ul>
+        <h1><center>Quora</center></h1>
+         <li><%=link_to 'Sign up',new_user_registration_path, class: "fa fa-user-plus" %></li>
+         <li><%=link_to 'Sign In',new_user_session_path, class: "fa fa-sign-in" %></li>
+      </ul>
+    <%end%>
     <table align = "center">
-    <br>
-    <br>
-    <h1 align="left">All question detail</h1>
-    <tr>
-
-    <% @questions.each do |question| %>
-
-    <p align="center">added by <%=question.topic.topic_name %></p>
-    <p align="center">Question by <%= question.author_name %></p>
-    <h2 align="center"><a href="<%= question_path(question)%>"><%= question.data %></a>
-    </h2>
-    <p align="center"><b>link:</b><%= question.question_link %></p>
-    <p align="center"><b>time:</b><%= question.created_at.in_time_zone("CET") %></p>
-
-
-      <div id="follow">
-       <p align="center"><%= link_to 'follow',new_follow_path(:question_id => question),remote: true  %><%= question.follows.count %></p>
-      </div>
-
-    <p align="center"><%= link_to 'Answer', question_path(question) %><%=question.answers.count %></p>
-    </tr>
-
+      <br>
+      <br>
+      <h1 align="center"><u>Question Detail</u></h1>
+      <tr>
+      <% @questions.each do |question| %>
+      <p align="center">added by <%=question.topic.topic_name %></p>
+      <p align="center">Question by <%= question.author_name %></p>
+      <h2 align="center"><a href="<%= question_path(question)%>"><%= question.data %></a>
+      </h2>
+      <p align="center"><b>link:</b><%= question.question_link %></p>
+      <p align="center">post on <%= question.created_at.day %> <%= question.created_at.strftime("%B") %> <%= question.created_at.year %> </td>
+        <p align="center">
+          <% if user_signed_in?  %>      
+            <%  if !question.follows.where(:user_id =>current_user.id).present? %>
+              <%= link_to 'follow',follow_question_path(question),class: "fa fa-rss"  %> <%= question.follows.count %>
+            <%else%>
+              <%= link_to 'unfollow',follow_question_path(question),class: "fa fa-rss active"  %><%= question.follows.count %>
+            <%end%>
+          <%end%>
+        </p>    
+      <p align="center"><%= link_to 'Answer', question_path(question) %><%=question.answers.count %></p>
     </table>
-
     <% end %>
     </body>
 </html>

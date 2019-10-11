@@ -1,18 +1,27 @@
-<%= stylesheet_link_tag "list" %>
 <table align="right">
 	<tr>
+		<td>school</td>
+		<td></td>
 		<td><%= current_user.education.school %></td>
 	</tr>
 	<tr>
+		<td>Concentration</td>
+		<td></td>
 		<td><%= current_user.education.concentration %></td>
 	</tr>
 	<tr>
+		<td>Second concentration</td>
+		<td></td>
 		<td><%= current_user.education.second_concentration %></td>
 	</tr>
 	<tr>
+		<td>Degree</td>
+		<td></td>
 		<td><%= current_user.education.degree %></td>
 	</tr>
 	<tr>
+		<td>Year</td>
+		<td></td>
 		<td><%= current_user.education.graduation_year %></td>
 	</tr>
 	<tr>
@@ -20,7 +29,7 @@
 			<div id="edit-education">
 				<%= link_to 'edit',edit_education_path(current_user.education.id),remote: true %>
 			</div>
-			</td>
+		</td>
 		<td><%= link_to 'Delete', education_path(current_user.education.id),
 	              method: :delete,
 	              data: { confirm: 'Are you sure?' } %></td>

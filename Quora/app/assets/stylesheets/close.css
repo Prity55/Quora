@@ -1,0 +1,9 @@
+.close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 30px;
+    transform:rotate(50deg);
+    cursor: pointer;
+  }
+  

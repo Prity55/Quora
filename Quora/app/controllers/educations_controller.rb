@@ -4,7 +4,6 @@ class EducationsController < ApplicationController
 		@education = Education.new
 	end
 	def create
-		
 		@education = Education.new(education_params)
 		respond_to do |format|
 			if @education.save

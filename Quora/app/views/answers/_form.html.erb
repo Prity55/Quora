@@ -1,5 +1,6 @@
 <%= javascript_include_tag "jquery_init" %>
 <%= javascript_include_tag "answers.js" %>
+<%= stylesheet_link_tag "view" %>
 <%= form_for ([@question,@answer]),:html => {:id => "reg"} do |f| %>
   <% if @answer.errors.any? %>
 		<div id="error_explanation">
@@ -9,18 +10,18 @@
 			<ul>
         <% @answer.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
-          <%end%>
-        <% end %>
+        <%end%>
       </ul>
     </div>
-  <table >
-  <tr>
-   <td><%= f.label :Answer %></td>
-   <td></td>
-   <td><%= f.text_field :data, id:"data", placeholder: "Add your answer"%></td>
-      <%= f.hidden_field :question_id, :value => params[:question_id]%>
-   <td><%= f.submit "Add" %></td>
-
-  </tr> 
- </table>
-  <%end%>
+  <% end %>
+    <table >
+      <tr>
+       <td><%= f.label :Answer %></td>
+       <td></td>
+       <td><%= f.text_field :data, id:"data", placeholder: "Add your answer"%></td>
+          <%= f.hidden_field :question_id, :value => params[:question_id]%>
+       <td><%= f.submit "Add" %></td>
+       <td><%= link_to 'remove',:back%></td>
+      </tr> 
+    </table>
+<%end%>

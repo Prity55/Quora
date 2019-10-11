@@ -8,7 +8,14 @@ class DownvotesController < ApplicationController
 		respond_to do |format|
 		if !@answer.downvotes.where(:user_id =>current_user.id).present?
 			 @downvote=@answer.downvotes.new(params_downvote.merge(user_id: current_user.id))
-			  	if @downvote.save
+				 if @answer.upvotes.where(:user_id =>current_user.id).present?
+						@upvote=Upvote.where(:user_id =>current_user.id)
+				  	@upvote.first.destroy
+				   	format.html do
+				     	redirect_to question_path(@answer.question), notice:'remove upvote successfully'
+				 		end
+				end
+				if @downvote.save
 						format.html do
 	        #  redirect_to '/welcomes/index'
 	        	 redirect_to question_path(@answer.question), notice:'downvoted successfully'
@@ -21,7 +28,7 @@ class DownvotesController < ApplicationController
 			@downvote=Downvote.where(:user_id =>current_user.id)
 			@downvote.first.destroy
 				format.html do
-				  redirect_to question_path(@answer.question), notice:'some problem occure'
+				  redirect_to question_path(@answer.question), notice:'remove downvote successfully'
 				end
 		end
 	end

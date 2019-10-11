@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag "list" %>
-
-    <ul>
+  <ul>
     <h1>Quora</h1>
     <li><%=link_to 'Home',questions_path %></li>
     <li><%=link_to  'add question',new_question_path %></li>
@@ -8,9 +7,7 @@
     <li><%=link_to 'user',welcomes_index_path%>
     <li><%= link_to 'join topic',topics_path %></li>
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-
   </ul>
-			
 <h1>Employement detail</h1>
 <p>
 	<strong>Position:</strong>
@@ -34,5 +31,4 @@
 	<td><%= link_to 'Delete', employment_path(@employment),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-	
 </p>

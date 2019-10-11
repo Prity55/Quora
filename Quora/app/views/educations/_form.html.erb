@@ -1,6 +1,8 @@
 <%= javascript_include_tag "jquery_init" %>
 <%= javascript_include_tag 'education.js' %>
 <%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "close" %>
+<div id="myform">
 <div class="login-box">
 <%= form_for @education,:html => {:id => "reg"} do |form| %>
   <center><h1><b>Add education detail<b></h1></center>
@@ -10,14 +12,14 @@
           <%= pluralize(@education.errors.count,"error") %>prohibited from being saved
         </h2>
         <p>
-            <% @education.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-      </p>
-    </div>
-  <% end %>
-      
+          <% @education.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
   <table align="center">
+    <div class="close"><div id="class">+</div></div>
     <tr>
       <td>*<%= form.label :School %></td>
       <td></td>
@@ -47,11 +49,11 @@
         <td></td>
         <td><%= form.select :graduation_year, (2000..Time.now.year).to_a, :include_blank => {:year => "Select year"} %></td>
     </tr>
-    <%= form.hidden_field :user_id, :value => current_user.id %>
-    
+      <%= form.hidden_field :user_id, :value => current_user.id %>
     <tr>
       <td colspan=3><%= form.submit "save"%></td>
     </tr>
   </table>
 </div>
 <% end %>
+</div>

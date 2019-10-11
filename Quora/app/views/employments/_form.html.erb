@@ -1,5 +1,6 @@
 <%= javascript_include_tag "jquery_init" %>
 <%= javascript_include_tag "employments" %>
+<%= stylesheet_link_tag "close" %>
 <%= form_for @employment,:html => {:id => "reg"} do |form| %>
   <% if @employment.errors.any? %>
     <div id="error_explanation">
@@ -13,9 +14,11 @@
             </p>
     </div>
   <% end %>
-<%= stylesheet_link_tag "style" %>
+  <div id="myform">
+  <%= stylesheet_link_tag "style" %>
   <div class="login-box"> 
   <table align="center">
+    <div class="close"><div id="class">+</div></div>
     <h1 align="center"><b>Add employment detail<b></h1> 
     <tr>
       <td><%= form.label :Position %></td>
@@ -41,13 +44,13 @@
     </tr>
     <%= form.hidden_field :user_id, :value => current_user.id %>
     <tr>
+      <td colspan=2 >current stage</td>
       <td><%= form.check_box :current_stage %></td>
-      <td colspan=2 ></td>
-    </tr>
+      </tr>
     <tr>
       <td colspan=3><%= form.submit "save"%></td>
     </tr>
+    <% end %>
   </table>
+</div>   
 </div>
-   
-<% end %>

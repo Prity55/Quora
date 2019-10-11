@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
   
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'welcomes/index'
   devise_for :users, :controllers => {:registrations => "users/registrations"}, action: :edit
   resources :topics do
   	member do
   	  get :join
+      get :unjoin
  	  end
-      get :all, on: :collection
+    get :all, on: :collection
   end
   resources :employments ,except:[:index] 
   resources :educations ,except:[:index] 
   resources :questions do
     get :view, on: :collection
+    member do
+      get :follow
+    end
     resources :answers
   end
   resources :images,only:[:new,:create,:destroy]
@@ -19,10 +24,11 @@ Rails.application.routes.draw do
   get '/employments',to:'employments#new'
   get '/educations',to:'educations#new'
   get '/employments/:id',to: 'employments#edit'
-  
   resources :answers do
-      member do
+    member do
       get :views
+      get :upvote 
+      get :downvote
     end
   end
    resources :upvotes,only:[:new,:create,:destroy]

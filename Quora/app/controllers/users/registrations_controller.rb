@@ -23,8 +23,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
    def update
     @user = current_user
     if @user.update_attributes(user_params)
-      sign_in @user, force: true
-      redirect_to welcomes_index_path(:user_id => @user) ,notice:"update data succesfully"
+        sign_in @user, force: true
+        a= params[:user][:avatar]
+      if !a.blank?    
+        if @user.avatar.attach(params[:user][:avatar])
+          sign_in @user, force: true
+          redirect_to welcomes_index_path(:user_id => @user) ,notice:"data succesfully added"
+        elsif @user.avatar.attached?
+          @user.avatar.purge_later
+          @user.avatar.attach(params[:user][:avatar])
+          sign_in @user, force: true
+          redirect_to welcomes_index_path(:user_id => @user) ,notice:"update data succesfully"
+        end
+      else
+        sign_in @user, force: true
+        redirect_to welcomes_index_path(:user_id => @user) ,notice:"update data succesfully"
+      end
     else
       sign_in @user, force: true
       Rails.logger.info(@user.errors.messages.inspect)

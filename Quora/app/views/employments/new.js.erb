@@ -1,1 +1,7 @@
 $('#new-employ a').hide().parent().append("<%= j render 'form' %>")
+$('.close').bind('click', function() {
+ $('#myform').hide()
+ $('#new-employ a').show()
+});
+
+ // $('#new-employ').hide()

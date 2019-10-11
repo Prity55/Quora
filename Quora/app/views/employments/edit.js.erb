@@ -1,1 +1,5 @@
-$('#edit-employ a').hide().parent().append("<%= j render 'editEmploy'%>")
+$('#edit-employ a').hide().parent().append("<%= j render 'editEmploy'%> ")
+$('.close').bind('click', function() {
+ $('#myform').hide()
+ $('#edit-employ a').show()
+});

@@ -6,15 +6,16 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
 	has_many :userFollowers
 	has_many :userFollowings
-	has_and_belongs_to_many :topics
-	has_one :employment
+	has_and_belongs_to_many :topics, dependent: :destroy
+	has_one :employment, dependent: :destroy
 	has_and_belongs_to_many :answers
 	has_many :followedQuestions
 	has_many :bookmarkAnswers
 	has_one :userLocation, dependent: :destroy
-	has_one :education
-	has_many :upvotes
-	has_many :downvotes
-	has_many :follows
-  has_one :image
+	has_one :education,dependent: :destroy
+	has_many :upvotes,dependent: :destroy
+	has_many :downvotes,dependent: :destroy
+	has_many :follows, dependent: :destroy
+  has_one_attached :avatar, dependent: :destroy
+  has_many :votes, dependent: :destroy
 end

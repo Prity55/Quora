@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag "list" %>
 <%= javascript_include_tag "jquery_init" %>
 <%= javascript_include_tag "questions.js" %>
+<%= stylesheet_link_tag "design" %>
 <ul>
   <h1>Quora</h1>
   <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
@@ -41,20 +42,15 @@
 			</td>
 		</tr>
 		<tr>
-			
 			<td colspan="3"><%= form.text_field :data, id:"data", placeholder: "start your question with 'What','How','Why',etc."%></td>
       <td id="error"></td>
-
 		</tr>
 		<tr>
-			
 			<td colspan="3"><%= form.text_field :question_link, id:"question_link",placeholder: "Optional:include a link that gives context" %></td>
 		</tr>
-		
 		<%= form.hidden_field :user_id, :value => current_user.id %>
-		
 		<tr>
-			<td colspan="3"><%= form.submit "save"%></td>
+			<td colspan="3"><i class: "fa fa-arrow-circle-down"><%= form.submit "save" , class: "fa fa-arrow-circle-down" %></i></td>
 		</tr>
 		<tr>
 			<td colspan="3"><%= link_to 'back', questions_path %></td>

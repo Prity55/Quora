@@ -7,14 +7,11 @@ class EmploymentsController < ApplicationController
 		@employment = Employment.new(employment_params)
 		respond_to do |format|
 			if @employment.save
-				#format.html { redirect_to @user, notice: 'User was successfully created.' }
-				#redirect_to employment_path({:id => @employment.id}),notice: 'add successfully'
-		 		#format.js 
 		 		format.html do
           redirect_to '/welcomes/index'
         end
 			else
-			format.html{render 'new'}
+				format.html{render 'new'}
 			end
 		end
 	end
@@ -29,10 +26,9 @@ class EmploymentsController < ApplicationController
 		if !employment_params.blank?
 			respond_to do |format|
 				if @employment.update(employment_params)
-					#redirect_to @employment, notice:'information updated successfully'
 					format.html do
 					  redirect_to '/welcomes/index'
-					 end
+					end
 				else
 					format.html{render 'edit'}
 				end
@@ -41,24 +37,19 @@ class EmploymentsController < ApplicationController
 			redirect_to new_employment_path(@employment), notice: "position and company can't be blank"	
 		end
 	end
-
 	def index
 		render 'new'
 	end
 	def destroy
-		
 		@employment = Employment.find(params[:id])
-
 		if @employment.destroy
 			redirect_to welcomes_index_path, notice: 'delete record successfully'
 		else 
 			redirect_to edit_employment_path, notice: 'something went wrong plz edit detail'
 		end	
 	end
-
 	private 
 	 def employment_params
 	 	params.require(:employment).permit( :position, :company, :start_year, :end_year, :current_stagec, :user_id)
 	 end
-
 end

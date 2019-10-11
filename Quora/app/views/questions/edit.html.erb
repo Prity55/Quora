@@ -9,6 +9,13 @@
   <li><%=link_to 'user', welcomes_index_path,class: "fa fa-user-plus"%>
   <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
   <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
+  <li>
+    <% if current_user.avatar.attached? %>
+      <image src="<%= (url_for(current_user.avatar))%>" class= "img" alt="<%=current_user.name%>" >
+    <%else%>
+      <p><%=current_user.name%></p>
+    <% end %>
+    </li>
 </ul>
 <%= stylesheet_link_tag "style" %>
 <div class="login-box">
@@ -44,5 +51,5 @@
 			
 		</tr>
 	</table>
-</div>
 <% end %>
+</div>

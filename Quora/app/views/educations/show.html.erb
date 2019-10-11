@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag "list" %>
-
-    <ul>
+  <ul>
     <h1>Quora</h1>
     <li><%=link_to 'Home',questions_path %></li>
     <li><%=link_to  'add question',new_question_path %></li>
@@ -8,35 +7,33 @@
     <li><%=link_to 'user',welcomes_index_path %>
     <li><%= link_to 'join topic',topics_path %></li>
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-
- </ul>
-
-<h1>Education detail</h1>
-<p>
-	<strong>school:</strong>
-	<%= @education.school %>
-</p>
-<p>
-	<strong>concentration:</strong>
-	<%= @education.concentration %>
-</p>
-<p>
-	<strong>second concentration:</strong>
-	<%= @education.second_concentration %>
-</p>
-<p>
-	<strong>Degree</strong>
-	<%= @education.degree %>
-</p>
-<p>
-	<strong>Graduation year</strong>
-	<%= @education.graduation_year %>
-</p>
-<p>
-	<td><%= link_to 'back', welcomes_index_path %></td>
-	<td><%= link_to 'edit',edit_education_path(@education) %></td>
-	<td><%= link_to 'Delete', education_path(@education),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-	
-</p>
+  </ul>
+  <h1>Education detail</h1>
+  <p>
+  	<strong>school:</strong>
+  	<%= @education.school %>
+  </p>
+  <p>
+  	<strong>concentration:</strong>
+  	<%= @education.concentration %>
+  </p>
+  <p>
+  	<strong>second concentration:</strong>
+  	<%= @education.second_concentration %>
+  </p>
+  <p>
+  	<strong>Degree</strong>
+  	<%= @education.degree %>
+  </p>
+  <p>
+  	<strong>Graduation year</strong>
+  	<%= @education.graduation_year %>
+  </p>
+  <p>
+  	<td><%= link_to 'back', welcomes_index_path %></td>
+  	<td><%= link_to 'edit',edit_education_path(@education) %></td>
+  	<td><%= link_to 'Delete', education_path(@education),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+  	
+  </p>

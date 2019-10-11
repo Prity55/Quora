@@ -1,15 +1,22 @@
 <table align="right">
-	
 	<tr>
+		<td>Position</td>
+		<td></td>
 		<td><%= current_user.employment.position %></td>
 	</tr>
 	<tr>
+		<td>Company</td>
+		<td></td>
 		<td><%= current_user.employment.company %></td>
 	</tr>
 	<tr>
+		<td>start year</td>
+		<td></td>
 		<td><%= current_user.employment.start_year %></td>
 	</tr>
 	<tr>
+		<td>End year</td>
+		<td></td>
 		<td><%= current_user.employment.end_year %></td>
 	</tr>
 	<tr>
@@ -23,3 +30,5 @@
               data: { confirm: 'Are you sure?' } %></td>
 	</tr>
 </table>
+</body>
+</html>

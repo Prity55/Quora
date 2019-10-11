@@ -1,1 +1,5 @@
-$('#edit-education').hide().parent().append("<%= j render 'editEdu' %>")
+$('#edit-education a').hide().parent().append("<%= j render 'editEdu' %>")
+$('.close').bind('click',function(){
+  $('#myform').hide()
+  $('#edit-education a').show()
+});
