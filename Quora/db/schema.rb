@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_131108) do
+ActiveRecord::Schema.define(version: 2019_10_14_122440) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,13 +73,13 @@ ActiveRecord::Schema.define(version: 2019_10_09_131108) do
     t.index ["user_id"], name: "index_bookmark_answers_on_user_id"
   end
 
-  create_table "downvotes", force: :cascade do |t|
+  create_table "bookmark_questions", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "answer_id"
+    t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["answer_id"], name: "index_downvotes_on_answer_id"
-    t.index ["user_id"], name: "index_downvotes_on_user_id"
+    t.index ["question_id"], name: "index_bookmark_questions_on_question_id"
+    t.index ["user_id"], name: "index_bookmark_questions_on_user_id"
   end
 
   create_table "educations", force: :cascade do |t|
@@ -168,16 +168,6 @@ ActiveRecord::Schema.define(version: 2019_10_09_131108) do
     t.index ["user_id"], name: "index_topics_users_on_user_id"
   end
 
-  create_table "upvotes", force: :cascade do |t|
-    t.datetime "upvote"
-    t.integer "answer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["answer_id"], name: "index_upvotes_on_answer_id"
-    t.index ["user_id"], name: "index_upvotes_on_user_id"
-  end
-
   create_table "user_followers", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -214,6 +204,7 @@ ActiveRecord::Schema.define(version: 2019_10_09_131108) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -5,7 +5,13 @@
   <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
   <li><%=link_to  'add question',new_question_path, class: "fa fa-plus"%></li>
   <li><%=link_to  'add topic',new_topic_path,class: "fa fa-plus-circle" %></li>
-  <li><%=link_to 'user', welcomes_index_path,class: "fa fa-user-plus"%>
+  <li>
+    <% if current_user.admin? %>
+      <%=link_to 'Admin', welcomes_index_path, class: "fa fa-user" %>
+    <%else%> 
+      <%=link_to 'user', welcomes_index_path, class: "fa fa-user-plus"%>
+    <%end%>     
+  </li>
   <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
   <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
 </ul>
@@ -14,7 +20,7 @@
   <br>
   <br>
   <h1 align="center">All question detail</h1>
-  <tr><%= link_to "back", :back ,class:"fa fa-arrow-circle-left" %></tr>
+  <tr><%= link_to "back", :back ,class: "fa fa-arrow-circle-left" ,onclick: "history.back()"  %></tr>
   <tr>
     <% @questions.each do |question| %>
       <p align="center">added by <%=question.topic.topic_name %></p>
@@ -24,7 +30,7 @@
       <p align="center">post on <%= question.created_at.day %> <%= question.created_at.strftime("%B") %> <%= question.created_at.year %> </td>
       <p align="center"><%= question.follows.count %>follow<i class: "fa fa-wifi"></p>
       <p align="center"><%= link_to 'Answer', question_path(question), class:"fa fa-edit" %><%=question.answers.count %></p>
-    <% end %>
+      <% end %>
   </tr>
 </table>
 </div>

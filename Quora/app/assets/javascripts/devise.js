@@ -66,19 +66,16 @@ $(document).ready(function(){
 	}
 	function email()
 	{
-		var i= $('#userid').val()
- 	 	var arr=i.split(" ");
- 	  for(var j=0;j<arr.length-1;j++)
-	  {
-	  	if($('#email').val()==arr[j]){
+		var i= $('#userid').val().toUpperCase()
+ 	 	var arr = i.split(" ");
+ 	 	var Email=$('#email').val().toUpperCase()
+ 	  	if (arr.includes(Email))
+	  	{
 		  	$('#E_error').html("duplicate email id not allow");
 		  	alert("duplicate email id not allow");
 		  	return false;
 	  	}
-		  else{
-		  	j++;
-		  }
-		}
+		  
 	  return true;
 	}
 	$('#name').blur(function(){
@@ -113,7 +110,8 @@ $(document).ready(function(){
 		  return true;
 	  }
 	  else{
-			e.preventDefault();
+			//e.preventDefault();
+	    alert("refresh page & fill correct value in all textbox");
 	    return false; 
 	  }
 	});

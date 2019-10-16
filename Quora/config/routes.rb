@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'welcomes/index'
   devise_for :users, :controllers => {:registrations => "users/registrations"}, action: :edit
+  resources :users, only: [:index,:destroy] do
+    member do
+      get :bookmarks
+    end
+  end
   resources :topics do
   	member do
   	  get :join
@@ -16,6 +21,7 @@ Rails.application.routes.draw do
     get :view, on: :collection
     member do
       get :follow
+      get :bookmark
     end
     resources :answers
   end
@@ -34,7 +40,6 @@ Rails.application.routes.draw do
    resources :upvotes,only:[:new,:create,:destroy]
    resources :downvotes,only:[:new,:create,:destroy]
    resources :follows,only:[:new,:create,:destroy]
-  root 'questions#index'
-
+   root 'questions#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

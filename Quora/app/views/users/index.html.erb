@@ -1,4 +1,7 @@
 <%= stylesheet_link_tag "list" %>
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "questions.js" %>
+<%= stylesheet_link_tag "design" %>
 <%= stylesheet_link_tag "view" %>
 <ul>
   <h1>Quora</h1>
@@ -17,16 +20,32 @@
   <li>
     <% if current_user.avatar.attached? %>
       <image src="<%= (url_for(current_user.avatar))%>" class= "img" alt="<%=current_user.name%>" >
-      <%else%>
+    <%else%>
       <p><%=current_user.name%></p>
+    <% end %>
   </li>
 </ul>
-<h1 align="center">answer review</h1>
-<table align = "center">
-  <tr><h1><%= @answer.question.data %></h1></tr><br><br>
-  <tr>answer by <%=current_user.name %><tr><br>
-  <tr><%= @answer.data %></tr> &nbsp<%= link_to "edit",edit_answer_path(@answer)%><br>
-  <tr><%= @answer.created_at.in_time_zone("CET") %></tr><br>
-</table>
-	<p><%= link_to "back" ,question_path(@answer.question_id) %></p>
-	
+<div class="view">
+<%= link_to "back", :back ,class: "fa fa-arrow-circle-left" ,onclick: "history.back()"  %>
+<% @users.each do |user| %>
+  <table align="center">
+    <tr>
+       <td>
+        <% if user.avatar.attached? %>
+          <image src="<%= (url_for(user.avatar))%>" class= "img" alt="Quora user" >
+        <% end %>
+      </td>
+      <td>Name :<td>
+      <td></td>
+      <td><%= user.name %></td>
+      <td></td>
+      <td>
+        <% if current_user.admin? %>
+          <%= link_to 'Destroy', user_path(user), class: "fa fa-trash",
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
+        <%end%>
+    </tr>
+  </table>
+<% end %>
+</div>

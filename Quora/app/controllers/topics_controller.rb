@@ -17,7 +17,7 @@ before_action :authenticate_user!
 	def update
 		@topic = Topic.find(params[:id])
 		if @topic.update(topic_params)
-	    redirect_to @topic
+	    redirect_to topics_path, notice:"topic edit successfully"
     else
     	render 'edit'
     end
@@ -30,11 +30,10 @@ before_action :authenticate_user!
 	end
 	def destroy
 		@topic = Topic.find(params[:id])
-		if @topic.questions.blank?
-		   @topic.destroy
+		if @topic.destroy
 			redirect_to topics_path, notice:"topic deleted successfully"
 		else
-			redirect_to topics_path, notice:"topic have multiple question so it can't be delete"
+			redirect_to topics_path, notice:"some issue occur"
 		end
 	end
 	def all

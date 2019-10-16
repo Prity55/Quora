@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quora</title>
    <%=favicon_link_tag asset_path('favicon.png')%>
     <%= csrf_meta_tags %>
@@ -14,6 +15,7 @@
     <%= yield %>
       <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
+       
       
 
   </body>

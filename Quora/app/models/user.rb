@@ -11,11 +11,12 @@ class User < ApplicationRecord
 	has_and_belongs_to_many :answers
 	has_many :followedQuestions
 	has_many :bookmarkAnswers
-	has_one :userLocation, dependent: :destroy
 	has_one :education,dependent: :destroy
-	has_many :upvotes,dependent: :destroy
-	has_many :downvotes,dependent: :destroy
 	has_many :follows, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :bookmark_questions, dependent: :destroy
+  def current_admin
+    current_user && current_user.is_admin
+  end
 end

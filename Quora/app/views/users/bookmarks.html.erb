@@ -1,5 +1,6 @@
-<%= javascript_include_tag "jquery_init" %>
 <%= stylesheet_link_tag "list" %>
+<%= javascript_include_tag "jquery_init" %>
+<%= javascript_include_tag "questions.js" %>
 <%= stylesheet_link_tag "design" %>
 <%= stylesheet_link_tag "view" %>
 <ul>
@@ -25,33 +26,27 @@
   </li>
 </ul>
 <div class="view">
-  <p align="left"><%= link_to 'back', :back ,class: "fa fa-arrow-circle-left" ,onclick: "history.back()"%></p><br>
-  <h1>Add answer</h1>
+<%= link_to "back", :back ,class: "fa fa-arrow-circle-left" ,onclick: "history.back()"  %>
+<h1>Bookmark Question</h1>
+<% @bookmarks.each do |question| %>
   <table align = "center">
-  	<tr>Added topic by.<%= @question.topic.topic_name %></tr><br><br>
-  	<tr><%= @question.author_name %></tr><br>
-  	<tr><h2><%= @question.data %></h2><tr><br>
-  	<tr><%= @question.question_link %></tr><br>
-  	<tr><%= @question.created_at %></tr><br>
-      <% if current_user.questions.where(:id=>@question).present? || current_user.admin? %>
-        <%= link_to 'edit',edit_question_url(@question), class: "fa fa-pencil" %>
+    <tr>Added topic by.<%= question.topic.topic_name %></tr><br><br>
+    <tr><%= question.author_name %></tr><br>
+    <tr><h3><a href="<%= question_path(question)%>"><%= question.data %></a></h3></tr>
+    <tr><%= question.question_link %></tr><br>
+    <tr><%= question.created_at %></tr><br>
+      <% if current_user.questions.where(:id=>question).present? || current_user.admin? %>
+        <%= link_to 'edit',edit_question_url(question), class: "fa fa-pencil" %>
       <%end%>
     </tr>
     <br>
-  	<tr>
-      <% if current_user.questions.where(:id=>@question).present? || current_user.admin? %>
-        <%= link_to 'Destroy', question_path(@question), class: "fa fa-trash",
+    <tr>
+      <% if current_user.questions.where(:id=>question).present? || current_user.admin? %>
+        <%= link_to 'Destroy', question_path(question), class: "fa fa-trash",
                   method: :delete,
                   data: { confirm: 'Are you sure?' } %>
       <%end%>
     </tr>
-    <tr>
-      <div id="answer">
-        <%= link_to 'add answer',new_answer_path(:question_id => @question), remote: true, class:"fa fa-pencil-square-o"%>
-      </div>
-    </tr>
-    <div class="view">
-    	<tr><%= render 'answers/answer' %></tr>
-    </div>
   </table>
+<% end %>
 </div>

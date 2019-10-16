@@ -33,7 +33,7 @@
          </tr>
          <tr>
           <td>
-            <% if answer.users.where(:id=>current_user).present? %>
+            <% if answer.users.where(:id=>current_user).present? || current_user.admin? %>
               <div id="edits">
                 <%=link_to 'edit',edit_answer_path(answer),remote: true, class: "fa fa-pencil" %>
               </div>
@@ -42,7 +42,7 @@
           <td></td>
           <td></td>
           <td>
-            <% if answer.users.where(:id=>current_user).present? %>
+            <% if answer.users.where(:id=>current_user).present? || current_user.admin? %>
               <%= link_to 'Destroy', answer_path(answer), class: "fa fa-trash",
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %>

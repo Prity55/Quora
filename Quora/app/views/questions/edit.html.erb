@@ -6,7 +6,13 @@
   <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
   <li><%=link_to  'add question',new_question_path, class: "fa fa-plus"%></li>
   <li><%=link_to  'add topic',new_topic_path,class: "fa fa-plus-circle" %></li>
-  <li><%=link_to 'user', welcomes_index_path,class: "fa fa-user-plus"%>
+  <li>
+      <% if current_user.admin? %>
+        <%=link_to 'Admin', welcomes_index_path, class: "fa fa-user" %>
+      <%else%> 
+        <%=link_to 'user', welcomes_index_path, class: "fa fa-user-plus"%>
+      <%end%>     
+  </li>
   <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
   <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
   <li>
