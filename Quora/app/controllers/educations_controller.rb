@@ -1,5 +1,6 @@
 class EducationsController < ApplicationController
 	before_action :authenticate_user!
+	layout "all" ,except: [:show]
 	def new
 		@education = Education.new
 	end

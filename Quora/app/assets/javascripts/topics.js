@@ -2,6 +2,8 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function(){
   function check_name(){
+    debugger
+    $('#reg').find('input[type="submit"]').removeAttr('disabled');
     if($('#name').val()=="")
       $("#error").html("only allow character");
     else{     
@@ -26,8 +28,10 @@ $(document).ready(function(){
       return true;
     }
     else{
+      alert ("please fill value after refresh page");
       e.preventDefault();
-      return false; 
+      // $('input[type="submit"]').attr('disabled','disabled');
+      // return false; 
     }
   });
 });

@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quora</title>
+    <%=favicon_link_tag asset_path('favicon.png')%>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "listR" %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+
+  <body>
+<header class="navbar">
+  <% if user_signed_in?  %> 
+  <img class="logo" src="<%= asset_path('logo.png')%>">
+      <h1>Quora</h1> 
+      <%=link_to 'Home',questions_path, class: "fa fa-home", class: "active1" %>
+      <%=link_to  'Question',new_question_path, class: "fa fa-plus"%>
+      <%=link_to  'Topic',new_topic_path,class: "fa fa-plus-circle" %>
+        <% if current_user.admin? %>
+          <%=link_to 'Admin', welcomes_index_path, class: "fa fa-user" %>
+        <%else%> 
+          <%=link_to 'User', welcomes_index_path, class: "fa fa-user-plus"%>
+        <%end%>     
+      <%= link_to 'Join-Topic',topics_path, class: "fa fa-check-circle"%>
+      <%= link_to "Sign out", destroy_user_session_path, class: "fa fa-sign-out",:method => :delete %>
+        <% if current_user.avatar.attached? %>
+          <image src="<%= (url_for(current_user.avatar))%>" class= "img" alt="<%=current_user.name%>" >
+        <%else%>
+          <p><%=current_user.name%></p>
+        <% end %>
+  <%else%>
+    <img class="logo" src="<%= asset_path("logo.png") %>">
+      <h1>Quora</h1>
+       <%=link_to 'Sign up',new_user_registration_path, class: "fa fa-user-plus" %>
+       <%=link_to 'Sign In',new_user_session_path, class: "fa fa-sign-in" %>
+<%end%>
+</header>
+<%=yield%>
+</body>
+</html>

@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except:[:index]
+  layout "all" ,except:[:follow ,:bookmark]
   def index
     @questions = Question.all
   end

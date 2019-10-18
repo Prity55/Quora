@@ -1,6 +1,5 @@
 .view{
- font-family: Arial;
-  padding: 100px;
+  font-family: Arial;
   /*background: #f1f1f1;*/
   text-align:center;
   text-decoration: none;
@@ -13,14 +12,59 @@ h1{
   font-size:40px;
   font-style: bold;
 }
-.login-box
-{
-  margin-top:50px;
-  background:rgba(0,0,50,0.5);
-  color:#fff;
-  top:50%;
-  left:50%;
-  position:absolute;
-  transform:translate(-50%,-50%);
-  align-items: center;
+.vertical-menu {
+  width: 200px;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+  color:#8B0000;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.vertical-right-menu {
+  width: 200px;
+  float: right;
+}
+.vertical-right-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+.vertical-right-menu a:hover {
+  background-color: #ccc;
+  color:#8B0000;
+}
+@media screen and (max-width: 500px) {
+  .navbar h1
+  {
+    float:none;
+    display: block;
+  }
+  .navbar a {
+    float: none;
+    display: block;
+  }
+  .logo{display:none;
+  }
+  .img
+  {
+    float: none;
+    position:relative;
+    margin-left: 20px;
+    align-self: top-left;
+  }
 }

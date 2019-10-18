@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
 	before_action :authenticate_user!
 	after_action :add_user, only: :create
+	layout "all" , only:[:show, :index]
   def new
  	 @answer = Answer.new
   end

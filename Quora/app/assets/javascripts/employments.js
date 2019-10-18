@@ -43,6 +43,7 @@ $(document).ready(function(){
   		return true;
     }
     else{
+      alert("plz fill correct company and position value")
       e.preventDefault();
       return false; 
     }

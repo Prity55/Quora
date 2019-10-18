@@ -1,29 +1,8 @@
-<%= stylesheet_link_tag "list" %>
 <%= javascript_include_tag "jquery_init" %>
 <%= javascript_include_tag "topics" %>
-<ul>
-  <h1>Quora</h1>
-  <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
-  <li><%=link_to  'add question',new_question_path, class: "fa fa-plus"%></li>
-  <li><%=link_to  'add topic',new_topic_path,class: "fa fa-plus-circle" %></li>
-  <li>
-    <% if current_user.admin? %>
-      <%=link_to 'Admin', welcomes_index_path, class: "fa fa-user" %>
-    <%else%> 
-      <%=link_to 'user', welcomes_index_path, class: "fa fa-user-plus"%>
-    <%end%>     
-  </li>
-  <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
-  <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
-  <li><% if current_user.avatar.attached? %>
-        <image src="<%= (url_for(current_user.avatar))%>" class= "img" alt="<%=current_user.name%>" >
-        <%else%>
-        <p><%=current_user.name%></p>
-        <% end %>
-  </li>
-</ul>
 <%= stylesheet_link_tag "style" %>
-<div class="login-box">
+<main class="login-box">
+<div >
 <%= form_for @topic,:html => {:id => "reg"} do |form| %>
 <h1><center><b>Add new Topic</b></center></h1>
 <% if @topic.errors.any? %>
@@ -43,7 +22,7 @@
 <table align="center">
 	<tr>
 		<td><%= form.label :Topic_Name %></td>
-		<td><%= form.text_field :topic_name, id:"name" %></td>
+		<td><%= form.text_field :topic_name, id:"name" ,placeholder: "topic_name"%></td>
 		<td id="error"></td>
 	</tr>
 	<tr>
@@ -51,11 +30,12 @@
 	</tr>
 	<tr>
 		
-		<td colspan="3" ><%= link_to 'view all',topics_path %></td>
-		
+		<td><%= link_to 'view list',topics_path, class: "fa fa-eye" %></td>
+    <td></td>
+		<td><%= link_to "back", :back ,class:"fa fa-arrow-circle-left" ,onclick: "history.back()" %></td>
 	</tr>
-  <tr><%= link_to "back", :back ,class:"fa fa-arrow-circle-left" %></tr>
+  <tr></tr>
 </table>
-</div>
-
 <% end %>
+</div>
+</main>

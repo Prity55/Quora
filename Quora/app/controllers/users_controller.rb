@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  layout "all" ,except:[:destroy]
   def index
     @users= User.all
   end

@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
 before_action :authenticate_user!
+layout "all" 
 	def index
 		@topics = Topic.all
 	end
@@ -9,7 +10,7 @@ before_action :authenticate_user!
 	def create
 		@topic = Topic.new(topic_params)
     if @topic.save
-			redirect_to @topic, notice: 'topic was successfully created.'
+			redirect_to topics_path, notice: 'topic was successfully created.'
 		else
 		  render 'new'
 		end

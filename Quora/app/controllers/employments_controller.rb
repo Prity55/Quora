@@ -1,5 +1,6 @@
 class EmploymentsController < ApplicationController
 	before_action :authenticate_user!
+	layout "all", except:[:show]
 	def new
 		@employment=Employment.new
 	end

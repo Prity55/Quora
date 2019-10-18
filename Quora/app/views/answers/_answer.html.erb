@@ -1,8 +1,4 @@
-<%= stylesheet_link_tag "design" %>
-<%= stylesheet_link_tag "view" %>
-<html>
-  <body>
-    <% @answers.each do |answer| %>
+<% @answers.each do |answer| %>
       <table align="center">
         <tr>
         	<td>Answer by <%= answer.author %></td>
@@ -35,7 +31,7 @@
           <td>
             <% if answer.users.where(:id=>current_user).present? || current_user.admin? %>
               <div id="edits">
-                <%=link_to 'edit',edit_answer_path(answer),remote: true, class: "fa fa-pencil" %>
+                <%=link_to 'edit',edit_answer_path(answer.id),remote: true, class: "fa fa-pencil" %>
               </div>
             <%end%>
           </td>
@@ -43,7 +39,7 @@
           <td></td>
           <td>
             <% if answer.users.where(:id=>current_user).present? || current_user.admin? %>
-              <%= link_to 'Destroy', answer_path(answer), class: "fa fa-trash",
+              <%= link_to 'Destroy', answer_path(answer.id), class: "fa fa-trash",
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %>
             <%end%>
@@ -52,5 +48,3 @@
         <br>
       </table> 
     <%end%>
-  </body>
-</html>

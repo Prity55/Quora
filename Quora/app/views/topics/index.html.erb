@@ -1,28 +1,6 @@
-<%= stylesheet_link_tag "list" %>
 <%= stylesheet_link_tag "model" %>
 <%= stylesheet_link_tag "view" %>
 <%= stylesheet_link_tag "design" %>
-<ul>
-  <h1>Quora</h1>
-  <li><%=link_to 'Home',questions_path, class: "fa fa-home" %></li>
-  <li><%=link_to  'add question',new_question_path, class: "fa fa-plus"%></li>
-  <li><%=link_to  'add topic',new_topic_path,class: "fa fa-plus-circle" %></li>
-  <li>
-    <% if current_user.admin? %>
-      <%=link_to 'Admin', welcomes_index_path, class: "fa fa-user" %>
-    <%else%> 
-      <%=link_to 'user', welcomes_index_path, class: "fa fa-user-plus"%>
-    <%end%>     
-  </li>
-  <li><%= link_to 'join topic',topics_path,class: "fa fa-check-circle"%></li>
-  <li><%= link_to "Sign out", destroy_user_session_path,class: "fa fa-sign-out",:method => :delete %></li>
-  <li><% if current_user.avatar.attached? %>
-        <image src="<%= (url_for(current_user.avatar))%>" class= "img" alt="<%=current_user.name%>" >
-      <%else%>
-        <p><%=current_user.name%></p>
-      <% end %>
-  </li>
-</ul>
 <div class="view">
 <p align="left"><%= link_to "back", :back ,class:"fa fa-arrow-circle-left" ,onclick: "history.back()" %></p>
 <h1>All topic List</h1>
@@ -42,10 +20,8 @@
           </td>
       </tr>
       <tr>
-        <% if topic.users.where(:id =>current_user.id).present? || current_user.admin? %>
-          <td><%=link_to 'edit', edit_topic_path(topic), class: "fa fa-pencil" %></td>
-        <% end %>
         <% if current_user.admin? %>
+          <td><%=link_to 'edit', edit_topic_path(topic), class: "fa fa-pencil" %></td>
           <td><%= link_to 'Destroy', topic_path(topic), class: "fa fa-trash",
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %></td>
